@@ -2,108 +2,159 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>الأمم المتحدة - السلام العالمي والتنمية المستدامة</title>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!-- تقليل الاعتماد على المكتبات الخارجية -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
     <style>
+        /* CSS مخصص - خفيف ومحسن */
         :root {
             --un-blue: #0065B3;
             --un-blue-dark: #004d8a;
             --un-blue-light: #E6F2FF;
-            --un-gold: #FFD700;
             --un-green: #4CAF50;
             --un-red: #E53935;
             --gradient-primary: linear-gradient(135deg, #0065B3 0%, #004d8a 100%);
             --gradient-secondary: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
-            --shadow-soft: 0 8px 30px rgba(0, 101, 179, 0.1);
-            --shadow-strong: 0 15px 40px rgba(0, 101, 179, 0.15);
-            --shadow-hover: 0 20px 50px rgba(0, 101, 179, 0.25);
-            --transition-smooth: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            --shadow-soft: 0 4px 15px rgba(0, 101, 179, 0.1);
+            --shadow-strong: 0 8px 25px rgba(0, 101, 179, 0.15);
+            --transition-smooth: all 0.3s ease;
         }
         
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html {
+            scroll-behavior: smooth;
         }
         
         body {
-            font-family: 'Noto Sans Arabic', 'Roboto', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             direction: rtl;
-            margin: 0;
-            padding: 0;
             background-color: #f8fafc;
             color: #333;
+            line-height: 1.6;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
         
-        /* تصميم شريط التنقل العلوي */
+        /* تحسينات للجوال */
+        @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+            }
+        }
+        
+        /* شريط التنقل */
         .navbar {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background: white;
             box-shadow: var(--shadow-soft);
             position: fixed;
             top: 0;
             right: 0;
             width: 100%;
             z-index: 1000;
-            padding: 0.8rem 2rem;
+            padding: 10px 20px;
             transition: var(--transition-smooth);
-        }
-        
-        .navbar.scrolled {
-            padding: 0.5rem 2rem;
-            background: rgba(255, 255, 255, 0.98);
-            box-shadow: var(--shadow-strong);
         }
         
         .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
         }
         
         .logo {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 12px;
+            flex-shrink: 0;
         }
         
         .logo-img {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             background: var(--gradient-primary);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.8rem;
-            box-shadow: var(--shadow-soft);
+            font-size: 1.5rem;
         }
         
         .logo-text h2 {
             margin: 0;
             color: var(--un-blue);
-            font-weight: 800;
-            font-size: 1.5rem;
+            font-weight: 700;
+            font-size: 1.3rem;
+            white-space: nowrap;
         }
         
         .logo-text p {
             margin: 0;
             color: #666;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
+            display: none;
+        }
+        
+        .mobile-menu-btn {
+            background: none;
+            border: none;
+            color: var(--un-blue);
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 5px;
+            display: block;
+        }
+        
+        @media (min-width: 992px) {
+            .mobile-menu-btn {
+                display: none;
+            }
+            
+            .logo-text p {
+                display: block;
+            }
         }
         
         .nav-links {
+            display: none;
+            position: fixed;
+            top: 70px;
+            right: 0;
+            width: 100%;
+            background: white;
+            box-shadow: var(--shadow-strong);
+            flex-direction: column;
+            padding: 20px;
+            z-index: 999;
+        }
+        
+        .nav-links.active {
             display: flex;
-            gap: 2rem;
-            list-style: none;
-            margin: 0;
-            padding: 0;
+        }
+        
+        @media (min-width: 992px) {
+            .nav-links {
+                display: flex;
+                position: static;
+                flex-direction: row;
+                background: none;
+                box-shadow: none;
+                width: auto;
+                padding: 0;
+                gap: 25px;
+            }
         }
         
         .nav-links a {
@@ -111,57 +162,66 @@
             color: #444;
             font-weight: 600;
             font-size: 1rem;
-            position: relative;
-            padding: 0.5rem 0;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
             transition: var(--transition-smooth);
         }
         
-        .nav-links a:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 0;
-            height: 3px;
-            background: var(--un-blue);
-            border-radius: 2px;
-            transition: var(--transition-smooth);
-        }
-        
-        .nav-links a:hover {
-            color: var(--un-blue);
-        }
-        
-        .nav-links a:hover:after {
-            width: 100%;
+        @media (min-width: 992px) {
+            .nav-links a {
+                border-bottom: none;
+                padding: 5px 0;
+                position: relative;
+            }
+            
+            .nav-links a::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                width: 0;
+                height: 2px;
+                background: var(--un-blue);
+                transition: var(--transition-smooth);
+            }
+            
+            .nav-links a:hover::after {
+                width: 100%;
+            }
         }
         
         .nav-actions {
-            display: flex;
-            gap: 1rem;
+            display: none;
+            gap: 10px;
             align-items: center;
         }
         
+        @media (min-width: 768px) {
+            .nav-actions {
+                display: flex;
+            }
+        }
+        
         .btn {
-            padding: 0.7rem 1.5rem;
-            border-radius: 50px;
+            padding: 10px 20px;
+            border-radius: 25px;
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition-smooth);
             border: none;
-            font-family: 'Noto Sans Arabic', sans-serif;
             font-size: 0.95rem;
+            white-space: nowrap;
         }
         
         .btn-primary {
             background: var(--gradient-primary);
             color: white;
-            box-shadow: 0 5px 15px rgba(0, 101, 179, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 101, 179, 0.25);
         }
         
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 101, 179, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 101, 179, 0.3);
         }
         
         .btn-outline {
@@ -173,151 +233,136 @@
         .btn-outline:hover {
             background: var(--un-blue);
             color: white;
-            transform: translateY(-3px);
         }
         
-        /* تصميم الهيرو سيكشن مع تأثير Blur */
+        /* قسم الهيرو */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
-            background: linear-gradient(to bottom, rgba(0, 101, 179, 0.85), rgba(0, 101, 179, 0.9));
+            background: linear-gradient(135deg, rgba(0, 101, 179, 0.9) 0%, rgba(0, 77, 138, 0.9) 100%);
             color: white;
-            padding: 0 2rem;
-            margin-top: 80px;
+            padding: 100px 20px 60px;
             position: relative;
             overflow: hidden;
         }
         
-        .hero-background {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
-            background-size: cover;
-            background-position: center;
-            filter: blur(8px) brightness(0.7);
-            z-index: -1;
-            transform: scale(1.1);
-        }
-        
-        .hero-background-overlay {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to right, rgba(0, 101, 179, 0.7), rgba(0, 101, 179, 0.3));
-            z-index: -1;
-        }
-        
         .hero-content {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             width: 100%;
-            z-index: 2;
             position: relative;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+            text-align: center;
+        }
+        
+        @media (min-width: 768px) {
+            .hero-content {
+                text-align: right;
+            }
         }
         
         .hero-title {
-            font-size: 4rem;
+            font-size: 2.5rem;
             font-weight: 800;
-            margin-bottom: 1.5rem;
+            margin-bottom: 20px;
             line-height: 1.2;
         }
         
+        @media (min-width: 768px) {
+            .hero-title {
+                font-size: 3.5rem;
+            }
+        }
+        
         .hero-subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            max-width: 700px;
-            line-height: 1.6;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
             opacity: 0.95;
+            max-width: 700px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+        
+        @media (min-width: 768px) {
+            .hero-subtitle {
+                font-size: 1.4rem;
+                margin-right: 0;
+            }
+        }
+        
+        .hero-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        
+        @media (min-width: 768px) {
+            .hero-actions {
+                justify-content: flex-start;
+            }
         }
         
         .hero-stats {
-            display: flex;
-            gap: 3rem;
-            margin-top: 3rem;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        @media (min-width: 768px) {
+            .hero-stats {
+                grid-template-columns: repeat(4, 1fr);
+            }
         }
         
         .stat-item {
-            text-align: center;
             background: rgba(255, 255, 255, 0.1);
-            padding: 1.5rem;
+            padding: 20px 15px;
             border-radius: 15px;
-            min-width: 180px;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: var(--transition-smooth);
-        }
-        
-        .stat-item:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.2);
         }
         
         .stat-number {
-            font-size: 3rem;
+            font-size: 2rem;
             font-weight: 800;
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 5px;
+        }
+        
+        @media (min-width: 768px) {
+            .stat-number {
+                font-size: 2.5rem;
+            }
         }
         
         .stat-label {
-            font-size: 1.1rem;
+            font-size: 1rem;
             opacity: 0.9;
+            display: block;
+            margin-bottom: 8px;
         }
         
         .stat-description {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             opacity: 0.8;
-            margin-top: 0.5rem;
             line-height: 1.4;
         }
         
-        /* تصميم البطاقات */
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-        
-        .section-title h2 {
-            font-size: 2.8rem;
-            font-weight: 800;
-            color: var(--un-blue);
-            margin-bottom: 1rem;
-            display: inline-block;
-        }
-        
-        .section-title h2:after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            right: 50%;
-            transform: translateX(50%);
-            width: 100px;
-            height: 5px;
-            background: var(--gradient-primary);
-            border-radius: 5px;
-        }
-        
-        .section-subtitle {
-            font-size: 1.2rem;
-            color: #666;
-            max-width: 700px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-        
+        /* الأقسام العامة */
         .section {
-            padding: 6rem 2rem;
-            max-width: 1400px;
+            padding: 60px 20px;
+            max-width: 1200px;
             margin: 0 auto;
+        }
+        
+        @media (min-width: 768px) {
+            .section {
+                padding: 80px 20px;
+            }
         }
         
         .section-light {
@@ -329,77 +374,122 @@
             color: white;
         }
         
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--un-blue);
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
         .section-dark .section-title h2 {
             color: white;
         }
         
-        .section-dark .section-title h2:after {
+        @media (min-width: 768px) {
+            .section-title h2 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+        
+        .section-dark .section-title h2::after {
             background: white;
+        }
+        
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
         }
         
         .section-dark .section-subtitle {
             color: rgba(255, 255, 255, 0.9);
         }
         
+        /* البطاقات */
         .cards-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        @media (min-width: 768px) {
+            .cards-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 992px) {
+            .cards-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
         
         .card {
             background: white;
-            border-radius: 20px;
+            border-radius: 15px;
             overflow: hidden;
             box-shadow: var(--shadow-soft);
             transition: var(--transition-smooth);
-            height: 100%;
             cursor: pointer;
-            position: relative;
+            height: 100%;
         }
         
         .card:hover {
-            transform: translateY(-15px);
-            box-shadow: var(--shadow-hover);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-strong);
         }
         
         .card-icon {
-            width: 80px;
-            height: 80px;
+            width: 70px;
+            height: 70px;
             background: var(--gradient-primary);
-            border-radius: 20px;
+            border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 2.5rem;
-            margin: 2rem auto 1.5rem;
-            box-shadow: 0 10px 20px rgba(0, 101, 179, 0.2);
-            transition: var(--transition-smooth);
-        }
-        
-        .card:hover .card-icon {
-            transform: scale(1.1) rotate(5deg);
+            font-size: 2rem;
+            margin: 30px auto 20px;
         }
         
         .card-content {
-            padding: 0 2rem 2rem;
+            padding: 0 20px 30px;
         }
         
         .card-title {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 700;
             color: var(--un-blue);
-            margin-bottom: 1rem;
+            margin-bottom: 15px;
             text-align: center;
         }
         
         .card-text {
             color: #666;
-            line-height: 1.7;
             text-align: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 20px;
+            line-height: 1.7;
         }
         
         .card-link {
@@ -409,27 +499,38 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
+            gap: 8px;
             transition: var(--transition-smooth);
         }
         
         .card-link:hover {
-            gap: 1rem;
-            color: var(--un-blue-dark);
+            gap: 12px;
         }
         
-        /* تصميم أهداف التنمية المستدامة */
+        /* أهداف التنمية */
         .sdg-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 1.5rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 40px;
+        }
+        
+        @media (min-width: 768px) {
+            .sdg-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        @media (min-width: 1200px) {
+            .sdg-grid {
+                grid-template-columns: repeat(8, 1fr);
+            }
         }
         
         .sdg-item {
             background: white;
-            border-radius: 15px;
-            padding: 1.5rem 1rem;
+            border-radius: 12px;
+            padding: 20px 15px;
             text-align: center;
             box-shadow: var(--shadow-soft);
             transition: var(--transition-smooth);
@@ -437,96 +538,100 @@
         }
         
         .sdg-item:hover {
-            transform: translateY(-10px) scale(1.05);
-            box-shadow: var(--shadow-hover);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-strong);
         }
         
         .sdg-number {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             background: var(--gradient-primary);
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
-            font-weight: 800;
-            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 10px;
         }
         
         .sdg-title {
             font-weight: 600;
             color: #444;
-            font-size: 1rem;
+            font-size: 0.9rem;
         }
         
-        /* تصميم مشاريع اليمن */
+        /* مشاريع اليمن */
         .yemen-projects {
-            position: relative;
+            background: white;
             border-radius: 20px;
             overflow: hidden;
             box-shadow: var(--shadow-strong);
-            margin-top: 3rem;
-            background: #fff;
+            margin-top: 40px;
         }
         
         .yemen-header {
             background: var(--gradient-primary);
             color: white;
-            padding: 2rem;
+            padding: 25px 20px;
             text-align: center;
         }
         
         .yemen-header h3 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.6rem;
+            margin-bottom: 10px;
         }
         
         .yemen-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 2rem;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            padding: 25px 20px;
+        }
+        
+        @media (min-width: 768px) {
+            .yemen-content {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
         
         .project-card {
             background: #f8fafc;
-            border-radius: 15px;
-            padding: 1.5rem;
+            border-radius: 12px;
+            padding: 20px;
             box-shadow: var(--shadow-soft);
             transition: var(--transition-smooth);
         }
         
         .project-card:hover {
             transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
         }
         
         .project-icon {
             width: 60px;
             height: 60px;
             background: var(--gradient-primary);
-            border-radius: 15px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
         }
         
         .project-title {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: var(--un-blue);
-            margin-bottom: 0.8rem;
+            margin-bottom: 10px;
         }
         
         .project-stats {
             display: flex;
             justify-content: space-between;
-            margin-top: 1rem;
-            padding-top: 1rem;
+            margin-top: 15px;
+            padding-top: 15px;
             border-top: 1px solid #eee;
         }
         
@@ -535,137 +640,18 @@
         }
         
         .stat-value {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 700;
             color: var(--un-blue);
             display: block;
         }
         
         .stat-label {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #666;
         }
         
-        /* تصميم الفوتر */
-        .footer {
-            background: #0a1a2d;
-            color: white;
-            padding: 5rem 2rem 2rem;
-        }
-        
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-        
-        .footer-column h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            color: white;
-            position: relative;
-            padding-bottom: 0.8rem;
-        }
-        
-        .footer-column h3:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--un-blue);
-        }
-        
-        .footer-links {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-        
-        .footer-links a {
-            color: #bbb;
-            text-decoration: none;
-            transition: var(--transition-smooth);
-        }
-        
-        .footer-links a:hover {
-            color: white;
-            padding-right: 10px;
-        }
-        
-        .social-icons {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-        
-        .social-icon {
-            width: 45px;
-            height: 45px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-            transition: var(--transition-smooth);
-        }
-        
-        .social-icon:hover {
-            background: var(--un-blue);
-            transform: translateY(-5px);
-        }
-        
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #aaa;
-            font-size: 0.9rem;
-        }
-        
-        /* تصميم القائمة المتنقلة للهواتف */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--un-blue);
-            font-size: 1.8rem;
-            cursor: pointer;
-        }
-        
-        /* تأثيرات الحركة */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .float-animation {
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        /* تصميم النوافذ المنبثقة */
+        /* النوافذ المنبثقة */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -679,8 +665,8 @@
             z-index: 2000;
             opacity: 0;
             visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-            padding: 1rem;
+            transition: var(--transition-smooth);
+            padding: 20px;
         }
         
         .modal-overlay.active {
@@ -690,14 +676,14 @@
         
         .modal {
             background: white;
-            border-radius: 20px;
+            border-radius: 15px;
             max-width: 800px;
             width: 100%;
             max-height: 90vh;
             overflow-y: auto;
-            box-shadow: var(--shadow-hover);
-            transform: translateY(30px);
-            transition: transform 0.4s ease;
+            box-shadow: var(--shadow-strong);
+            transform: translateY(20px);
+            transition: var(--transition-smooth);
         }
         
         .modal-overlay.active .modal {
@@ -707,8 +693,8 @@
         .modal-header {
             background: var(--gradient-primary);
             color: white;
-            padding: 1.5rem 2rem;
-            border-radius: 20px 20px 0 0;
+            padding: 20px;
+            border-radius: 15px 15px 0 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -716,7 +702,7 @@
         
         .modal-header h3 {
             margin: 0;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
         }
         
         .modal-close {
@@ -725,226 +711,207 @@
             color: white;
             font-size: 1.8rem;
             cursor: pointer;
-            transition: var(--transition-smooth);
-        }
-        
-        .modal-close:hover {
-            transform: rotate(90deg);
+            padding: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .modal-content {
-            padding: 2rem;
+            padding: 20px;
         }
         
-        .modal-section {
-            margin-bottom: 2rem;
+        /* الفوتر */
+        .footer {
+            background: #0a1a2d;
+            color: white;
+            padding: 50px 20px 30px;
         }
         
-        .modal-section h4 {
-            color: var(--un-blue);
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--un-blue-light);
-        }
-        
-        /* تصميم واجهة تسجيل الدخول */
-        .login-form, .donation-form {
-            max-width: 500px;
+        .footer-content {
+            max-width: 1200px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
         }
         
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #444;
-            font-weight: 600;
-        }
-        
-        .form-group input, .form-group select, .form-group textarea {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            font-family: 'Noto Sans Arabic', sans-serif;
-            font-size: 1rem;
-            transition: var(--transition-smooth);
-        }
-        
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-            outline: none;
-            border-color: var(--un-blue);
-            box-shadow: 0 0 0 3px rgba(0, 101, 179, 0.1);
-        }
-        
-        .form-row {
-            display: flex;
-            gap: 1rem;
-        }
-        
-        .form-row .form-group {
-            flex: 1;
-        }
-        
-        .payment-methods {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-        
-        .payment-method {
-            flex: 1;
-            text-align: center;
-            padding: 1rem;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-        }
-        
-        .payment-method:hover, .payment-method.active {
-            border-color: var(--un-blue);
-            background-color: var(--un-blue-light);
-        }
-        
-        .payment-method i {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-            color: var(--un-blue);
-        }
-        
-        .donation-amounts {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-            flex-wrap: wrap;
-        }
-        
-        .donation-amount {
-            padding: 1rem 1.5rem;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-            text-align: center;
-            flex: 1;
-            min-width: 100px;
-        }
-        
-        .donation-amount:hover, .donation-amount.active {
-            border-color: var(--un-blue);
-            background-color: var(--un-blue-light);
-            color: var(--un-blue);
-            font-weight: 600;
-        }
-        
-        .form-footer {
-            margin-top: 2rem;
-            text-align: center;
-        }
-        
-        /* تصميم متجاوب */
-        @media (max-width: 1100px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .hero-title {
-                font-size: 3rem;
-            }
-            
-            .hero-stats {
-                flex-wrap: wrap;
-                gap: 2rem;
-            }
-            
-            .stat-item {
-                min-width: 160px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.2rem;
-            }
-            
-            .section-title h2 {
-                font-size: 2.2rem;
-            }
-            
-            .section {
-                padding: 4rem 1.5rem;
-            }
-            
-            .cards-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .sdg-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            }
-            
-            .yemen-content {
-                grid-template-columns: 1fr;
-            }
-            
+        @media (min-width: 768px) {
             .footer-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .form-row {
-                flex-direction: column;
-                gap: 0;
-            }
-            
-            .payment-methods {
-                flex-direction: column;
-            }
-            
-            .donation-amounts {
-                justify-content: center;
-            }
-            
-            .donation-amount {
-                min-width: 80px;
+                grid-template-columns: repeat(2, 1fr);
             }
         }
         
-        @media (max-width: 480px) {
+        @media (min-width: 992px) {
+            .footer-content {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: white;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--un-blue);
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-right: 8px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.1rem;
+            transition: var(--transition-smooth);
+            text-decoration: none;
+        }
+        
+        .social-icon:hover {
+            background: var(--un-blue);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* استعلامات الوسائط للجوال */
+        @media (max-width: 767px) {
             .hero-title {
                 font-size: 2rem;
             }
             
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .btn {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            
             .stat-number {
-                font-size: 2.2rem;
+                font-size: 1.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .modal {
+                max-height: 85vh;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .hero-actions .btn {
+                width: 100%;
+                max-width: 300px;
             }
             
             .sdg-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* تحسينات الأداء */
+        .lazy-load {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .lazy-load.loaded {
+            opacity: 1;
+        }
+        
+        /* تحسينات الوصول والنقر */
+        @media (hover: none) {
+            .card:hover {
+                transform: none;
             }
             
-            .stat-item {
-                min-width: 140px;
-                padding: 1rem;
+            .sdg-item:hover {
+                transform: none;
             }
+            
+            .project-card:hover {
+                transform: none;
+            }
+        }
+        
+        /* تحسين تجربة اللمس */
+        button, 
+        .btn,
+        .card,
+        .sdg-item {
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* تحسين الخطوط للعربية */
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
         }
     </style>
 </head>
 <body>
-    <!-- شريط التنقل العلوي -->
+    <!-- شريط التنقل -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">
@@ -962,12 +929,12 @@
             </button>
             
             <ul class="nav-links" id="navLinks">
-                <li><a href="#home">الرئيسية</a></li>
-                <li><a href="#about">عن المنظمة</a></li>
-                <li><a href="#goals">أهداف التنمية</a></li>
-                <li><a href="#structure">الهيكل التنظيمي</a></li>
-                <li><a href="#yemen">مشاريع اليمن</a></li>
-                <li><a href="#contact">اتصل بنا</a></li>
+                <li><a href="#home" onclick="closeMobileMenu()">الرئيسية</a></li>
+                <li><a href="#about" onclick="closeMobileMenu()">عن المنظمة</a></li>
+                <li><a href="#goals" onclick="closeMobileMenu()">أهداف التنمية</a></li>
+                <li><a href="#structure" onclick="closeMobileMenu()">الهيكل التنظيمي</a></li>
+                <li><a href="#yemen" onclick="closeMobileMenu()">مشاريع اليمن</a></li>
+                <li><a href="#contact" onclick="closeMobileMenu()">اتصل بنا</a></li>
             </ul>
             
             <div class="nav-actions">
@@ -977,54 +944,43 @@
         </div>
     </nav>
 
-    <!-- قسم الهيرو الرئيسي مع تأثير Blur -->
+    <!-- الهيرو -->
     <section class="hero" id="home">
-        <div class="hero-background"></div>
-        <div class="hero-background-overlay"></div>
-        
-        <div class="hero-content animate__animated animate__fadeInUp">
+        <div class="hero-content">
             <h1 class="hero-title">نعمل معاً لبناء عالم أفضل للجميع</h1>
             <p class="hero-subtitle">
                 الأمم المتحدة هي منظمة دولية تأسست عام 1945. تضم حالياً 193 دولة عضو. تكرس الأمم المتحدة جهودها للحفاظ على السلام والأمن الدوليين، وحماية حقوق الإنسان، وتقديم المساعدات الإنسانية، وتعزيز التنمية المستدامة، ودعم القانون الدولي.
             </p>
             <div class="hero-actions">
-                <button class="btn btn-primary" id="exploreBtn" style="padding: 1rem 2.5rem; font-size: 1.1rem;">استكشف أعمالنا</button>
+                <button class="btn btn-primary" id="exploreBtn">استكشف أعمالنا</button>
             </div>
             
             <div class="hero-stats">
-                <div class="stat-item fade-in">
-                    <span class="stat-number animate-count" data-target="193">0</span>
+                <div class="stat-item">
+                    <span class="stat-number" id="count1">0</span>
                     <span class="stat-label">دولة عضو</span>
-                    <div class="stat-description">عدد الدول الأعضاء في الأمم المتحدة من جميع أنحاء العالم</div>
+                    <div class="stat-description">عدد الدول الأعضاء في الأمم المتحدة</div>
                 </div>
-                <div class="stat-item fade-in">
-                    <span class="stat-number animate-count" data-target="75">0</span>
+                <div class="stat-item">
+                    <span class="stat-number" id="count2">0</span>
                     <span class="stat-label">عاماً من الخدمة</span>
-                    <div class="stat-description">من العمل من أجل السلام والتنمية العالمية منذ تأسيسها عام 1945</div>
+                    <div class="stat-description">من العمل منذ تأسيسها عام 1945</div>
                 </div>
-                <div class="stat-item fade-in">
-                    <span class="stat-number animate-count" data-target="17">0</span>
+                <div class="stat-item">
+                    <span class="stat-number" id="count3">0</span>
                     <span class="stat-label">هدف تنمية مستدام</span>
-                    <div class="stat-description">أهداف الأمم المتحدة للقضاء على الفقر وحماية كوكب الأرض بحلول 2030</div>
+                    <div class="stat-description">أهداف القضاء على الفقر وحماية الأرض</div>
                 </div>
-                <div class="stat-item fade-in">
-                    <span class="stat-number animate-count" data-target="12">0</span>
+                <div class="stat-item">
+                    <span class="stat-number" id="count4">0</span>
                     <span class="stat-label">بعثة حفظ سلام</span>
-                    <div class="stat-description">بعثة أممية نشطة تعمل في مناطق النزاع حول العالم لحفظ السلام</div>
+                    <div class="stat-description">بعثة أممية نشطة حول العالم</div>
                 </div>
             </div>
         </div>
-        
-        <!-- عناصر عائمة للخلفية -->
-        <div class="float-animation" style="position: absolute; top: 20%; left: 10%; color: rgba(255,255,255,0.1); font-size: 5rem;">
-            <i class="fas fa-globe"></i>
-        </div>
-        <div class="float-animation" style="position: absolute; bottom: 20%; right: 10%; color: rgba(255,255,255,0.1); font-size: 5rem; animation-delay: 2s;">
-            <i class="fas fa-peace"></i>
-        </div>
     </section>
 
-    <!-- قسم المحاور الرئيسية -->
+    <!-- المحاور الرئيسية -->
     <section class="section section-light" id="about">
         <div class="section-title">
             <h2>محاور عملنا الرئيسية</h2>
@@ -1032,7 +988,7 @@
         </div>
         
         <div class="cards-container">
-            <div class="card fade-in" data-modal="peace-modal">
+            <div class="card" data-modal="peace-modal">
                 <div class="card-icon">
                     <i class="fas fa-peace"></i>
                 </div>
@@ -1043,7 +999,7 @@
                 </div>
             </div>
             
-            <div class="card fade-in" data-modal="rights-modal">
+            <div class="card" data-modal="rights-modal">
                 <div class="card-icon">
                     <i class="fas fa-hands-helping"></i>
                 </div>
@@ -1054,7 +1010,7 @@
                 </div>
             </div>
             
-            <div class="card fade-in" data-modal="development-modal">
+            <div class="card" data-modal="development-modal">
                 <div class="card-icon">
                     <i class="fas fa-globe-africa"></i>
                 </div>
@@ -1067,54 +1023,54 @@
         </div>
     </section>
 
-    <!-- قسم أهداف التنمية المستدامة -->
+    <!-- أهداف التنمية المستدامة -->
     <section class="section section-dark" id="goals">
         <div class="section-title">
             <h2>أهداف التنمية المستدامة</h2>
-            <p class="section-subtitle">خطة الأمم المتحدة لتحقيق مستقبل أفضل وأكثر استدامة للجميع. تشمل الأهداف السبعة عشر معالجة للتحديات العالمية التي نواجهها</p>
+            <p class="section-subtitle">خطة الأمم المتحدة لتحقيق مستقبل أفضل وأكثر استدامة للجميع</p>
         </div>
         
         <div class="sdg-grid">
-            <div class="sdg-item fade-in" data-goal="1">
+            <div class="sdg-item" data-goal="1">
                 <div class="sdg-number">1</div>
                 <div class="sdg-title">القضاء على الفقر</div>
             </div>
-            <div class="sdg-item fade-in" data-goal="2">
+            <div class="sdg-item" data-goal="2">
                 <div class="sdg-number">2</div>
                 <div class="sdg-title">القضاء على الجوع</div>
             </div>
-            <div class="sdg-item fade-in" data-goal="3">
+            <div class="sdg-item" data-goal="3">
                 <div class="sdg-number">3</div>
                 <div class="sdg-title">الصحة الجيدة</div>
             </div>
-            <div class="sdg-item fade-in" data-goal="4">
+            <div class="sdg-item" data-goal="4">
                 <div class="sdg-number">4</div>
                 <div class="sdg-title">التعليم الجيد</div>
             </div>
-            <div class="sdg-item fade-in" data-goal="5">
+            <div class="sdg-item" data-goal="5">
                 <div class="sdg-number">5</div>
                 <div class="sdg-title">المساواة بين الجنسين</div>
             </div>
-            <div class="sdg-item fade-in" data-goal="6">
+            <div class="sdg-item" data-goal="6">
                 <div class="sdg-number">6</div>
                 <div class="sdg-title">المياه النظيفة</div>
             </div>
-            <div class="sdg-item fade-in" data-goal="7">
+            <div class="sdg-item" data-goal="7">
                 <div class="sdg-number">7</div>
                 <div class="sdg-title">طاقة نظيفة</div>
             </div>
-            <div class="sdg-item fade-in" data-goal="8">
+            <div class="sdg-item" data-goal="8">
                 <div class="sdg-number">8</div>
                 <div class="sdg-title">العمل اللائق</div>
             </div>
         </div>
         
-        <div style="text-align: center; margin-top: 3rem;">
-            <button class="btn btn-primary" id="showAllGoals" style="background: white; color: var(--un-blue); padding: 1rem 2.5rem; font-size: 1.1rem;">عرض جميع الأهداف الـ 17</button>
+        <div style="text-align: center; margin-top: 40px;">
+            <button class="btn btn-primary" id="showAllGoals" style="background: white; color: var(--un-blue);">عرض جميع الأهداف الـ 17</button>
         </div>
     </section>
 
-    <!-- قسم الهيكل التنظيمي -->
+    <!-- الهيكل التنظيمي -->
     <section class="section section-light" id="structure">
         <div class="section-title">
             <h2>الهيكل التنظيمي</h2>
@@ -1122,7 +1078,7 @@
         </div>
         
         <div class="cards-container">
-            <div class="card fade-in" data-modal="assembly-modal">
+            <div class="card" data-modal="assembly-modal">
                 <div class="card-icon" style="background: var(--gradient-secondary);">
                     <i class="fas fa-users"></i>
                 </div>
@@ -1133,7 +1089,7 @@
                 </div>
             </div>
             
-            <div class="card fade-in" data-modal="security-modal">
+            <div class="card" data-modal="security-modal">
                 <div class="card-icon" style="background: linear-gradient(135deg, #E53935 0%, #B71C1C 100%);">
                     <i class="fas fa-shield-alt"></i>
                 </div>
@@ -1144,7 +1100,7 @@
                 </div>
             </div>
             
-            <div class="card fade-in" data-modal="economic-modal">
+            <div class="card" data-modal="economic-modal">
                 <div class="card-icon" style="background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);">
                     <i class="fas fa-chart-line"></i>
                 </div>
@@ -1157,14 +1113,14 @@
         </div>
     </section>
 
-    <!-- قسم مشاريع الأمم المتحدة في اليمن -->
+    <!-- مشاريع اليمن -->
     <section class="section" id="yemen">
         <div class="section-title">
             <h2>مشاريع الأمم المتحدة في اليمن</h2>
-            <p class="section-subtitle">نعمل في اليمن على تقديم المساعدات الإنسانية والإنمائية لمساعدة الشعب اليمني في مواجهة التحديات الإنسانية والاقتصادية</p>
+            <p class="section-subtitle">نعمل في اليمن على تقديم المساعدات الإنسانية والإنمائية لمساعدة الشعب اليمني</p>
         </div>
         
-        <div class="yemen-projects fade-in">
+        <div class="yemen-projects">
             <div class="yemen-header">
                 <h3>استجابة الأمم المتحدة للأزمة الإنسانية في اليمن</h3>
                 <p>منذ عام 2015، قدمت الأمم المتحدة مساعدات إنسانية لأكثر من 13 مليون يمني</p>
@@ -1233,13 +1189,12 @@
         <div class="footer-content">
             <div class="footer-column">
                 <h3>الأمم المتحدة</h3>
-                <p>منظمة دولية تأسست عام 1945 لتعزيز السلام والأمن الدوليين، وحماية حقوق الإنسان، وتقديم المساعدات الإنسانية، وتعزيز التنمية المستدامة، ودعم القانون الدولي.</p>
+                <p>منظمة دولية تأسست عام 1945 لتعزيز السلام والأمن الدوليين، وحماية حقوق الإنسان، وتقديم المساعدات الإنسانية، وتعزيز التنمية المستدامة.</p>
                 <div class="social-icons">
                     <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
                     <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
                     <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
                     <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
             
@@ -1251,7 +1206,6 @@
                     <li><a href="#goals">أهداف التنمية</a></li>
                     <li><a href="#structure">الهيكل التنظيمي</a></li>
                     <li><a href="#yemen">مشاريع اليمن</a></li>
-                    <li><a href="#contact">اتصل بنا</a></li>
                 </ul>
             </div>
             
@@ -1263,16 +1217,15 @@
                     <li><a href="#">الوظائف والتوظيف</a></li>
                     <li><a href="#">الفرص التطوعية</a></li>
                     <li><a href="#">المشاريع والبرامج</a></li>
-                    <li><a href="#">المركز الإعلامي</a></li>
                 </ul>
             </div>
             
             <div class="footer-column">
                 <h3>اتصل بنا</h3>
-                <p><i class="fas fa-map-marker-alt" style="margin-left: 10px;"></i> صنعاء، اليمن</p>
-                <p><i class="fas fa-phone" style="margin-left: 10px;"></i> +967 777 777 777</p>
-                <p><i class="fas fa-envelope" style="margin-left: 10px;"></i> yemen@un.org</p>
-                <p><i class="fas fa-globe" style="margin-left: 10px;"></i> un-yemen.org</p>
+                <p><i class="fas fa-map-marker-alt" style="margin-left: 8px;"></i> صنعاء، اليمن</p>
+                <p><i class="fas fa-phone" style="margin-left: 8px;"></i> +967 777 777 777</p>
+                <p><i class="fas fa-envelope" style="margin-left: 8px;"></i> yemen@un.org</p>
+                <p><i class="fas fa-globe" style="margin-left: 8px;"></i> un-yemen.org</p>
             </div>
         </div>
         
@@ -1280,6 +1233,180 @@
             <p>© 2023 الأمم المتحدة - مكتب اليمن. جميع الحقوق محفوظة.</p>
         </div>
     </footer>
+
+    <!-- نافذة أهداف التنمية المستدامة -->
+    <div class="modal-overlay" id="goals-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>أهداف التنمية المستدامة الـ 17</h3>
+                <button class="modal-close" id="closeGoalsModal">×</button>
+            </div>
+            <div class="modal-content">
+                <p>أهداف التنمية المستدامة هي دعوة عالمية للعمل من أجل القضاء على الفقر وحماية كوكب الأرض وضمان تمتع جميع الناس بالسلام والازدهار. هذه الأهداف السبعة عشر متكاملة - أي أنها تدرك أن العمل في مجال واحد سيؤثر على النتائج في مجالات أخرى، وأن التنمية يجب أن توازن بين الاستدامة الاجتماعية والاقتصادية والبيئية.</p>
+                
+                <h4 style="margin: 20px 0 10px; color: var(--un-blue);">قائمة الأهداف الـ 17</h4>
+                <div style="margin-top: 15px;">
+                    <p><strong>1. القضاء على الفقر</strong> - القضاء على الفقر بجميع أشكاله في كل مكان</p>
+                    <p><strong>2. القضاء على الجوع</strong> - القضاء على الجوع وتوفير الأمن الغذائي</p>
+                    <p><strong>3. الصحة الجيدة</strong> - ضمان تمتع الجميع بأنماط عيش صحية</p>
+                    <p><strong>4. التعليم الجيد</strong> - ضمان التعليم الجيد المنصف والشامل للجميع</p>
+                    <p><strong>5. المساواة بين الجنسين</strong> - تحقيق المساواة بين الجنسين</p>
+                    <p><strong>6. المياه النظيفة</strong> - ضمان توافر المياه وخدمات الصرف الصحي للجميع</p>
+                    <p><strong>7. طاقة نظيفة</strong> - ضمان حصول الجميع على خدمات الطاقة الحديثة</p>
+                    <p><strong>8. العمل اللائق</strong> - تعزيز النمو الاقتصادي المطرد والشامل للجميع</p>
+                    <p><strong>9. الصناعة والابتكار</strong> - بناء هياكل أساسية قادرة على الصمود</p>
+                    <p><strong>10. الحد من عدم المساواة</strong> - الحد من انعدام المساواة داخل البلدان وفيما بينها</p>
+                    <p><strong>11. مدن ومجتمعات محلية</strong> - جعل المدن والمستوطنات البشرية شاملة للجميع</p>
+                    <p><strong>12. الاستهلاك والإنتاج</strong> - ضمان وجود أنماط استهلاك وإنتاج مستدامة</p>
+                    <p><strong>13. العمل المناخي</strong> - اتخاذ إجراءات عاجلة لمكافحة تغير المناخ</p>
+                    <p><strong>14. الحياة تحت الماء</strong> - حفظ المحيطات والبحار والموارد البحرية</p>
+                    <p><strong>15. الحياة في البر</strong> - حماية النظم الإيكولوجية البرية ومكافحة التصحر</p>
+                    <p><strong>16. السلام والعدل</strong> - تعزيز المجتمعات السلمية والشاملة للجميع</p>
+                    <p><strong>17. عقد الشراكات</strong> - تعزيز وسائل التنفيذ وتنشيط الشراكة العالمية</p>
+                </div>
+                
+                <h4 style="margin: 20px 0 10px; color: var(--un-blue);">الموعد المستهدف</h4>
+                <p>تلتزم الدول الأعضاء في الأمم المتحدة بتحقيق أهداف التنمية المستدامة بحلول عام 2030. ويتطلب تحقيق هذه الأهداف شراكة عالمية بين الحكومات والقطاع الخاص والمجتمع المدني والأفراد.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة السلام والأمن -->
+    <div class="modal-overlay" id="peace-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>السلام والأمن الدوليين</h3>
+                <button class="modal-close" data-modal="peace-modal">×</button>
+            </div>
+            <div class="modal-content">
+                <h4>حفظ السلام ومنع النزاعات</h4>
+                <p>تعمل الأمم المتحدة على منع نشوب النزاعات وحلها، ومساعدة أطراف النزاعات على إحلال السلام، وتهيئة الظروف المؤاتية لتحقيق السلام واستدامته. وتعد عمليات حفظ السلام التابعة للأمم المتحدة أداة مرنة تطورت على مر السنين لمساعدة البلدان التي مزقتها الصراعات على تهيئة الظروف اللازمة لتحقيق سلام دائم.</p>
+                
+                <h4 style="margin-top: 20px;">مجالات العمل الرئيسية</h4>
+                <ul style="padding-right: 20px; margin-top: 10px;">
+                    <li style="margin-bottom: 8px;"><strong>عمليات حفظ السلام:</strong> نشر قوات حفظ السلام في مناطق النزاع حول العالم.</li>
+                    <li style="margin-bottom: 8px;"><strong>نزع السلاح:</strong> العمل على الحد من انتشار الأسلحة التقليدية وأسلحة الدمار الشامل.</li>
+                    <li style="margin-bottom: 8px;"><strong>مكافحة الإرهاب:</strong> تعزيز التعاون الدولي لمكافحة الإرهاب بجميع أشكاله.</li>
+                    <li style="margin-bottom: 8px;"><strong>بناء السلام:</strong> مساعدة المجتمعات على التعافي بعد انتهاء الصراعات.</li>
+                    <li><strong>الوساطة:</strong> توفير وساطة دولية لحل النزاعات بالوسائل السلمية.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة حقوق الإنسان -->
+    <div class="modal-overlay" id="rights-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>حقوق الإنسان</h3>
+                <button class="modal-close" data-modal="rights-modal">×</button>
+            </div>
+            <div class="modal-content">
+                <h4>حماية وتعزيز حقوق الإنسان</h4>
+                <p>تعمل الأمم المتحدة على حماية وتعزيز حقوق الإنسان للجميع دون تمييز. وتسترشد في عملها بالإعلان العالمي لحقوق الإنسان والمعاهدات الدولية الأخرى لحقوق الإنسان. وتسعى المنظمة إلى دمج حقوق الإنسان في جميع برامجها وأنشطتها.</p>
+                
+                <h4 style="margin-top: 20px;">المجالات الرئيسية</h4>
+                <ul style="padding-right: 20px; margin-top: 10px;">
+                    <li style="margin-bottom: 8px;"><strong>الحقوق المدنية والسياسية:</strong> الحق في الحياة، حرية التعبير، حرية الدين، الحق في محاكمة عادلة.</li>
+                    <li style="margin-bottom: 8px;"><strong>الحقوق الاقتصادية والاجتماعية والثقافية:</strong> الحق في العمل، الحق في التعليم، الحق في الصحة، الحق في السكن اللائق.</li>
+                    <li style="margin-bottom: 8px;"><strong>حقوق الفئات المستضعفة:</strong> حقوق المرأة، حقوق الطفل، حقوق الأشخاص ذوي الإعاقة، حقوق اللاجئين.</li>
+                    <li style="margin-bottom: 8px;"><strong>مكافحة التمييز:</strong> مكافحة التمييز على أساس العرق، الجنس، الدين، أو أي وضع آخر.</li>
+                    <li><strong>العدالة وسيادة القانون:</strong> دعم أنظمة العدالة وتعزيز سيادة القانون على المستوى الوطني والدولي.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة التنمية المستدامة -->
+    <div class="modal-overlay" id="development-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>التنمية المستدامة</h3>
+                <button class="modal-close" data-modal="development-modal">×</button>
+            </div>
+            <div class="modal-content">
+                <h4>تعزيز التنمية المستدامة عالمياً</h4>
+                <p>تعمل الأمم المتحدة على تعزيز التنمية المستدامة التي تلبي احتياجات الحاضر دون المساس بقدرة الأجيال المقبلة على تلبية احتياجاتها الخاصة. وتشمل التنمية المستدامة ثلاثة أبعاد مترابطة: التنمية الاقتصادية، والتنمية الاجتماعية، وحماية البيئة.</p>
+                
+                <h4 style="margin-top: 20px;">مجالات التركيز</h4>
+                <ul style="padding-right: 20px; margin-top: 10px;">
+                    <li style="margin-bottom: 8px;"><strong>القضاء على الفقر:</strong> خفض نسبة الأشخاص الذين يعيشون تحت خط الفقر إلى النصف بحلول عام 2030.</li>
+                    <li style="margin-bottom: 8px;"><strong>الصحة الجيدة والرفاه:</strong> ضمان حياة صحية وتعزيز الرفاه للجميع في جميع الأعمار.</li>
+                    <li style="margin-bottom: 8px;"><strong>التعليم الجيد:</strong> ضمان التعليم الجيد المنصف والشامل وتعزيز فرص التعلم مدى الحياة للجميع.</li>
+                    <li style="margin-bottom: 8px;"><strong>المساواة بين الجنسين:</strong> تحقيق المساواة بين الجنسين وتمكين جميع النساء والفتيات.</li>
+                    <li style="margin-bottom: 8px;"><strong>العمل المناخي:</strong> اتخاذ إجراءات عاجلة لمكافحة تغير المناخ وآثاره.</li>
+                    <li><strong>الطاقة النظيفة:</strong> ضمان حصول الجميع على خدمات الطاقة الحديثة الموثوقة والمستدامة.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة الجمعية العامة -->
+    <div class="modal-overlay" id="assembly-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>الجمعية العامة للأمم المتحدة</h3>
+                <button class="modal-close" data-modal="assembly-modal">×</button>
+            </div>
+            <div class="modal-content">
+                <h4>الجهاز الرئيسي للتداول في الأمم المتحدة</h4>
+                <p>الجمعية العامة هي الجهاز الرئيسي للتداول وصنع السياسات والتمثيل في الأمم المتحدة. وتضم جميع الدول الأعضاء البالغ عددها 193 دولة، ولكل دولة صوت واحد. وتجتمع الجمعية العامة في دورات عادية سنوية تبدأ في سبتمبر من كل عام.</p>
+                
+                <h4 style="margin-top: 20px;">الوظائف والصلاحيات</h4>
+                <ul style="padding-right: 20px; margin-top: 10px;">
+                    <li style="margin-bottom: 8px;"><strong>مناقشة جميع المسائل:</strong> يمكن للجمعية العامة مناقشة أي مسألة تدخل في نطاق ميثاق الأمم المتحدة.</li>
+                    <li style="margin-bottom: 8px;"><strong>تقديم التوصيات:</strong> يمكنها تقديم توصيات إلى الدول الأعضاء أو مجلس الأمن بشأن هذه المسائل.</li>
+                    <li style="margin-bottom: 8px;"><strong>اعتماد الميزانية:</strong> تدرس وتوافق على ميزانية الأمم المتحدة وتحدد الأنصبة المالية للأعضاء.</li>
+                    <li style="margin-bottom: 8px;"><strong>انتخاب الأعضاء:</strong> تنتخب الأعضاء غير الدائمين في مجلس الأمن وأعضاء المجلس الاقتصادي والاجتماعي.</li>
+                    <li><strong>تعيين الأمين العام:</strong> بناء على توصية مجلس الأمن، تنتخب الجمعية العامة الأمين العام للأمم المتحدة.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة مجلس الأمن -->
+    <div class="modal-overlay" id="security-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>مجلس الأمن التابع للأمم المتحدة</h3>
+                <button class="modal-close" data-modal="security-modal">×</button>
+            </div>
+            <div class="modal-content">
+                <h4>المسؤول الرئيسي عن حفظ السلام والأمن الدوليين</h4>
+                <p>مجلس الأمن هو الجهاز المسؤول عن حفظ السلام والأمن الدوليين وفقاً لميثاق الأمم المتحدة. ويتخذ المجلس قرارات ملزمة للدول الأعضاء، وله سلطة فرض عقوبات وصولاً إلى تفويض استخدام القوة للحفاظ على السلام والأمن الدوليين أو استعادتهما.</p>
+                
+                <h4 style="margin-top: 20px;">التكوين والعضوية</h4>
+                <ul style="padding-right: 20px; margin-top: 10px;">
+                    <li style="margin-bottom: 8px;"><strong>الأعضاء الدائمون (5 دول):</strong> الصين، فرنسا، روسيا، المملكة المتحدة، الولايات المتحدة. لكل منها حق النقض (الفيتو).</li>
+                    <li style="margin-bottom: 8px;"><strong>الأعضاء غير الدائمين (10 دول):</strong> تنتخبهم الجمعية العامة لمدة سنتين، مع مراعاة التوزيع الجغرافي العادل.</li>
+                    <li style="margin-bottom: 8px;"><strong>الرئاسة:</strong> تتبادل الدول الأعضاء رئاسة المجلس شهرياً حسب الترتيب الأبجدي الإنجليزي لأسمائها.</li>
+                    <li><strong>التصويت:</strong> تحتاج القرارات بشأن المسائل الموضوعية إلى تأييد 9 أصوات من أصل 15، بما في ذلك أصوات جميع الأعضاء الدائمين (ما لم يمتنعوا).</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة المجلس الاقتصادي والاجتماعي -->
+    <div class="modal-overlay" id="economic-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>المجلس الاقتصادي والاجتماعي للأمم المتحدة</h3>
+                <button class="modal-close" data-modal="economic-modal">×</button>
+            </div>
+            <div class="modal-content">
+                <h4>الجهاز الرئيسي لتنسيق العمل الاقتصادي والاجتماعي</h4>
+                <p>المجلس الاقتصادي والاجتماعي هو الجهاز الرئيسي لتنسيق العمل الاقتصادي والاجتماعي للأمم المتحدة والوكالات المتخصصة والمؤسسات التابعة لها. ويشرف المجلس على أكثر من 70% من الموارد البشرية والمالية لمنظومة الأمم المتحدة.</p>
+                
+                <h4 style="margin-top: 20px;">التكوين والعضوية</h4>
+                <ul style="padding-right: 20px; margin-top: 10px;">
+                    <li style="margin-bottom: 8px;"><strong>عدد الأعضاء:</strong> 54 عضواً تنتخبهم الجمعية العامة لمدة ثلاث سنوات.</li>
+                    <li style="margin-bottom: 8px;"><strong>التوزيع الجغرافي:</strong> 14 مقعداً لأفريقيا، 11 مقعداً لآسيا، 6 مقاعد لأوروبا الشرقية، 10 مقاعد لأمريكا اللاتينية ومنطقة البحر الكاريبي، 13 مقعداً لأوروبا الغربية ودول أخرى.</li>
+                    <li style="margin-bottom: 8px;"><strong>الرئاسة:</strong> تنتخب الجمعية العامة رئيساً للمجلس كل عام.</li>
+                    <li><strong>الجلسات:</strong> يعقد المجلس دورة رئيسية كل عام في يوليو، تعقد في نيويورك وجنيف بالتناوب.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
     <!-- نافذة تسجيل الدخول -->
     <div class="modal-overlay" id="login-modal">
@@ -1289,47 +1416,29 @@
                 <button class="modal-close" data-modal="login-modal">×</button>
             </div>
             <div class="modal-content">
-                <div class="login-form">
-                    <div class="form-group">
-                        <label for="login-email">البريد الإلكتروني</label>
-                        <input type="email" id="login-email" placeholder="example@un.org">
+                <div style="max-width: 400px; margin: 0 auto;">
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 8px; color: #444; font-weight: 600;">البريد الإلكتروني</label>
+                        <input type="email" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem;" placeholder="example@un.org">
                     </div>
                     
-                    <div class="form-group">
-                        <label for="login-password">كلمة المرور</label>
-                        <input type="password" id="login-password" placeholder="أدخل كلمة المرور">
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 8px; color: #444; font-weight: 600;">كلمة المرور</label>
+                        <input type="password" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem;" placeholder="أدخل كلمة المرور">
                     </div>
                     
-                    <div class="form-row">
-                        <div class="form-group">
-                            <input type="checkbox" id="remember-me">
-                            <label for="remember-me" style="display: inline; margin-right: 5px;">تذكرني</label>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                        <div>
+                            <input type="checkbox" id="remember-me" style="margin-left: 8px;">
+                            <label for="remember-me" style="color: #666;">تذكرني</label>
                         </div>
-                        <div class="form-group" style="text-align: left;">
-                            <a href="#" style="color: var(--un-blue); text-decoration: none;">نسيت كلمة المرور؟</a>
-                        </div>
+                        <a href="#" style="color: var(--un-blue); text-decoration: none;">نسيت كلمة المرور؟</a>
                     </div>
                     
-                    <div class="form-footer">
-                        <button class="btn btn-primary" style="width: 100%; padding: 1rem; font-size: 1.1rem;">تسجيل الدخول</button>
-                        
-                        <div style="margin-top: 1.5rem; text-align: center;">
-                            <p style="color: #666;">ليس لديك حساب؟ <a href="#" style="color: var(--un-blue); font-weight: 600;">سجل الآن</a></p>
-                        </div>
-                        
-                        <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #eee;">
-                            <p style="color: #666; text-align: center;">يمكنك تسجيل الدخول أيضاً باستخدام:</p>
-                            <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1rem;">
-                                <button class="btn btn-outline" style="display: flex; align-items: center; gap: 0.5rem;">
-                                    <i class="fab fa-google" style="color: #DB4437;"></i>
-                                    Google
-                                </button>
-                                <button class="btn btn-outline" style="display: flex; align-items: center; gap: 0.5rem;">
-                                    <i class="fab fa-microsoft" style="color: #00A4EF;"></i>
-                                    Microsoft
-                                </button>
-                            </div>
-                        </div>
+                    <button class="btn btn-primary" style="width: 100%; padding: 14px; font-size: 1.1rem;">تسجيل الدخول</button>
+                    
+                    <div style="text-align: center; margin-top: 25px; padding-top: 25px; border-top: 1px solid #eee;">
+                        <p style="color: #666;">ليس لديك حساب؟ <a href="#" style="color: var(--un-blue); font-weight: 600;">سجل الآن</a></p>
                     </div>
                 </div>
             </div>
@@ -1344,561 +1453,90 @@
                 <button class="modal-close" data-modal="donation-modal">×</button>
             </div>
             <div class="modal-content">
-                <div class="donation-form">
-                    <div class="form-group">
-                        <label for="donation-amount">مبلغ التبرع (دولار أمريكي)</label>
-                        <div class="donation-amounts">
-                            <div class="donation-amount" data-amount="10">$10</div>
-                            <div class="donation-amount" data-amount="25">$25</div>
-                            <div class="donation-amount" data-amount="50">$50</div>
-                            <div class="donation-amount" data-amount="100">$100</div>
-                            <div class="donation-amount" data-amount="250">$250</div>
-                            <div class="donation-amount" data-amount="500">$500</div>
+                <div style="max-width: 500px; margin: 0 auto;">
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 8px; color: #444; font-weight: 600;">مبلغ التبرع (دولار أمريكي)</label>
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 15px;">
+                            <button class="btn btn-outline" data-amount="10" style="padding: 12px;">$10</button>
+                            <button class="btn btn-outline" data-amount="25" style="padding: 12px;">$25</button>
+                            <button class="btn btn-outline" data-amount="50" style="padding: 12px;">$50</button>
+                            <button class="btn btn-outline" data-amount="100" style="padding: 12px;">$100</button>
+                            <button class="btn btn-outline" data-amount="250" style="padding: 12px;">$250</button>
+                            <button class="btn btn-outline" data-amount="500" style="padding: 12px;">$500</button>
                         </div>
-                        <input type="number" id="donation-amount" placeholder="أو أدخل المبلغ المطلوب" style="margin-top: 1rem;">
+                        <input type="number" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem;" placeholder="أو أدخل المبلغ المطلوب">
                     </div>
                     
-                    <div class="form-group">
-                        <label>جهة التبرع</label>
-                        <select id="donation-purpose">
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 8px; color: #444; font-weight: 600;">جهة التبرع</label>
+                        <select style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem;">
                             <option value="">اختر جهة التبرع</option>
                             <option value="yemen">مشاريع اليمن الإنسانية</option>
                             <option value="education">برامج التعليم حول العالم</option>
                             <option value="health">برامج الصحة والرعاية الطبية</option>
                             <option value="peace">عمليات حفظ السلام</option>
-                            <option value="refugees">دعم اللاجئين والنازحين</option>
                             <option value="general">الدعم العام للأمم المتحدة</option>
                         </select>
                     </div>
                     
-                    <div class="form-group">
-                        <label>طريقة الدفع</label>
-                        <div class="payment-methods">
-                            <div class="payment-method" data-method="credit">
-                                <i class="fas fa-credit-card"></i>
-                                <div>بطاقة ائتمان</div>
-                            </div>
-                            <div class="payment-method" data-method="paypal">
-                                <i class="fab fa-paypal"></i>
-                                <div>PayPal</div>
-                            </div>
-                            <div class="payment-method" data-method="bank">
-                                <i class="fas fa-university"></i>
-                                <div>تحويل بنكي</div>
-                            </div>
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 8px; color: #444; font-weight: 600;">طريقة الدفع</label>
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+                            <button class="btn btn-outline" data-method="credit" style="padding: 12px; font-size: 0.9rem;"><i class="fas fa-credit-card"></i> بطاقة</button>
+                            <button class="btn btn-outline" data-method="paypal" style="padding: 12px; font-size: 0.9rem;"><i class="fab fa-paypal"></i> PayPal</button>
+                            <button class="btn btn-outline" data-method="bank" style="padding: 12px; font-size: 0.9rem;"><i class="fas fa-university"></i> بنكي</button>
                         </div>
                     </div>
                     
-                    <div id="credit-card-details" style="display: none;">
-                        <div class="form-group">
-                            <label for="card-number">رقم البطاقة</label>
-                            <input type="text" id="card-number" placeholder="1234 5678 9012 3456">
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="card-expiry">تاريخ الانتهاء</label>
-                                <input type="text" id="card-expiry" placeholder="MM/YY">
-                            </div>
-                            <div class="form-group">
-                                <label for="card-cvc">رمز الأمان (CVC)</label>
-                                <input type="text" id="card-cvc" placeholder="123">
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="card-name">اسم حامل البطاقة</label>
-                            <input type="text" id="card-name" placeholder="الاسم كما هو مدون على البطاقة">
-                        </div>
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 8px; color: #444; font-weight: 600;">الاسم الكامل</label>
+                        <input type="text" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem;" placeholder="أدخل اسمك الكامل">
                     </div>
                     
-                    <div class="form-group">
-                        <label for="donor-name">الاسم الكامل</label>
-                        <input type="text" id="donor-name" placeholder="أدخل اسمك الكامل">
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; margin-bottom: 8px; color: #444; font-weight: 600;">البريد الإلكتروني</label>
+                        <input type="email" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem;" placeholder="example@email.com">
                     </div>
                     
-                    <div class="form-group">
-                        <label for="donor-email">البريد الإلكتروني</label>
-                        <input type="email" id="donor-email" placeholder="example@email.com">
+                    <div style="margin-bottom: 25px;">
+                        <input type="checkbox" id="donation-receipt" style="margin-left: 8px;">
+                        <label for="donation-receipt" style="color: #666;">أرغب في الحصول على إيصال تبرع</label>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="donor-message">رسالة التبرع (اختياري)</label>
-                        <textarea id="donor-message" rows="3" placeholder="أضف رسالة لدعم جهود الأمم المتحدة..."></textarea>
-                    </div>
+                    <button class="btn btn-primary" id="submit-donation" style="width: 100%; padding: 14px; font-size: 1.1rem;">التبرع الآن</button>
                     
-                    <div class="form-group">
-                        <input type="checkbox" id="donation-receipt">
-                        <label for="donation-receipt" style="display: inline; margin-right: 5px;">أرغب في الحصول على إيصال تبرع</label>
+                    <div style="text-align: center; margin-top: 20px;">
+                        <p style="color: #666; font-size: 0.9rem;">تبرعاتكم تساعدنا على الاستمرار في تقديم المساعدات الإنسانية والإنمائية حول العالم.</p>
                     </div>
-                    
-                    <div class="form-footer">
-                        <button class="btn btn-primary" id="submit-donation" style="width: 100%; padding: 1rem; font-size: 1.1rem;">التبرع الآن</button>
-                        
-                        <div style="margin-top: 1.5rem; text-align: center;">
-                            <p style="color: #666; font-size: 0.9rem;">تبرعاتكم تساعدنا على الاستمرار في تقديم المساعدات الإنسانية والإنمائية حول العالم.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- نافذة منبثقة لأهداف التنمية المستدامة -->
-    <div class="modal-overlay" id="goals-modal">
-        <div class="modal">
-            <div class="modal-header">
-                <h3>أهداف التنمية المستدامة الـ 17</h3>
-                <button class="modal-close" id="closeGoalsModal">×</button>
-            </div>
-            <div class="modal-content">
-                <div class="modal-section">
-                    <h4>خطة عمل الأمم المتحدة للقضاء على الفقر وحماية كوكب الأرض وضمان الرخاء للجميع</h4>
-                    <p>أهداف التنمية المستدامة هي دعوة عالمية للعمل من أجل القضاء على الفقر وحماية كوكب الأرض وضمان تمتع جميع الناس بالسلام والازدهار. هذه الأهداف السبعة عشر متكاملة - أي أنها تدرك أن العمل في مجال واحد سيؤثر على النتائج في مجالات أخرى، وأن التنمية يجب أن توازن بين الاستدامة الاجتماعية والاقتصادية والبيئية.</p>
-                </div>
-                
-                <div class="modal-section">
-                    <h4>قائمة الأهداف الـ 17</h4>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem;">
-                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #0065B3;">
-                            <strong>الهدف 1:</strong> القضاء على الفقر بجميع أشكاله في كل مكان
-                        </div>
-                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #DDA63A;">
-                            <strong>الهدف 2:</strong> القضاء على الجوع وتوفير الأمن الغذائي
-                        </div>
-                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #4C9F38;">
-                            <strong>الهدف 3:</strong> ضمان تمتع الجميع بأنماط عيش صحية
-                        </div>
-                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #C5192D;">
-                            <strong>الهدف 4:</strong> ضمان التعليم الجيد المنصف والشامل للجميع
-                        </div>
-                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #FF3A21;">
-                            <strong>الهدف 5:</strong> تحقيق المساواة بين الجنسين وتمكين جميع النساء والفتيات
-                        </div>
-                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #26BDE2;">
-                            <strong>الهدف 6:</strong> ضمان توافر المياه وخدمات الصرف الصحي للجميع
-                        </div>
-                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #FCC30B;">
-                            <strong>الهدف 7:</strong> ضمان حصول الجميع على خدمات الطاقة الحديثة
-                        </div>
-                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #A21942;">
-                            <strong>الهدف 8:</strong> تعزيز النمو الاقتصادي المطرد والشامل للجميع
-                        </div>
-                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #FD6925;">
-                            <strong>الهدف 9:</strong> بناء هياكل أساسية قادرة على الصمود
-                        </div>
-                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #DD1367;">
-                            <strong>الهدف 10:</strong> الحد من انعدام المساواة داخل البلدان وفيما بينها
-                        </div>
-                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #FD9D24;">
-                            <strong>الهدف 11:</strong> جعل المدن والمستوطنات البشرية شاملة للجميع
-                        </div>
-                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #BF8B2E;">
-                            <strong>الهدف 12:</strong> ضمان وجود أنماط استهلاك وإنتاج مستدامة
-                        </div>
-                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #3F7E44;">
-                            <strong>الهدف 13:</strong> اتخاذ إجراءات عاجلة لمكافحة تغير المناخ
-                        </div>
-                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #0A97D9;">
-                            <strong>الهدف 14:</strong> حفظ المحيطات والبحار والموارد البحرية
-                        </div>
-                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #56C02B;">
-                            <strong>الهدف 15:</strong> حماية النظم الإيكولوجية البرية ومكافحة التصحر
-                        </div>
-                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #00689D;">
-                            <strong>الهدف 16:</strong> تعزيز المجتمعات السلمية والشاملة للجميع
-                        </div>
-                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #19486A;">
-                            <strong>الهدف 17:</strong> تعزيز وسائل التنفيذ وتنشيط الشراكة العالمية
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="modal-section">
-                    <h4>الموعد المستهدف</h4>
-                    <p>تلتزم الدول الأعضاء في الأمم المتحدة بتحقيق أهداف التنمية المستدامة بحلول عام 2030. ويتطلب تحقيق هذه الأهداف شراكة عالمية بين الحكومات والقطاع الخاص والمجتمع المدني والأفراد.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- نافذة منبثقة للسلام والأمن -->
-    <div class="modal-overlay" id="peace-modal">
-        <div class="modal">
-            <div class="modal-header">
-                <h3>السلام والأمن الدوليين</h3>
-                <button class="modal-close" data-modal="peace-modal">×</button>
-            </div>
-            <div class="modal-content">
-                <div class="modal-section">
-                    <h4>حفظ السلام ومنع النزاعات</h4>
-                    <p>تعمل الأمم المتحدة على منع نشوب النزاعات وحلها، ومساعدة أطراف النزاعات على إحلال السلام، وتهيئة الظروف المؤاتية لتحقيق السلام واستدامته. وتعد عمليات حفظ السلام التابعة للأمم المتحدة أداة مرنة تطورت على مر السنين لمساعدة البلدان التي مزقتها الصراعات على تهيئة الظروف اللازمة لتحقيق سلام دائم.</p>
-                </div>
-                
-                <div class="modal-section">
-                    <h4>مجالات العمل الرئيسية</h4>
-                    <ul style="line-height: 1.8;">
-                        <li><strong>عمليات حفظ السلام:</strong> نشر قوات حفظ السلام في مناطق النزاع حول العالم.</li>
-                        <li><strong>نزع السلاح:</strong> العمل على الحد من انتشار الأسلحة التقليدية وأسلحة الدمار الشامل.</li>
-                        <li><strong>مكافحة الإرهاب:</strong> تعزيز التعاون الدولي لمكافحة الإرهاب بجميع أشكاله.</li>
-                        <li><strong>بناء السلام:</strong> مساعدة المجتمعات على التعافي بعد انتهاء الصراعات.</li>
-                        <li><strong>الوساطة:</strong> توفير وساطة دولية لحل النزاعات بالوسائل السلمية.</li>
-                    </ul>
-                </div>
-                
-                <div class="modal-section">
-                    <h4>إحصائيات وأرقام</h4>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
-                        <div style="background: var(--un-blue-light); padding: 1rem; border-radius: 10px; text-align: center;">
-                            <div style="font-size: 2rem; font-weight: bold; color: var(--un-blue);">12</div>
-                            <div>بعثة حفظ سلام نشطة</div>
-                        </div>
-                        <div style="background: var(--un-blue-light); padding: 1rem; border-radius: 10px; text-align: center;">
-                            <div style="font-size: 2rem; font-weight: bold; color: var(--un-blue);">89,000</div>
-                            <div>عسكري وشرطي وعامل مدني</div>
-                        </div>
-                        <div style="background: var(--un-blue-light); padding: 1rem; border-radius: 10px; text-align: center;">
-                            <div style="font-size: 2rem; font-weight: bold; color: var(--un-blue);">121</div>
-                            <div>دولة تساهم بقوات حفظ السلام</div>
-                        </div>
-                        <div style="background: var(--un-blue-light); padding: 1rem; border-radius: 10px; text-align: center;">
-                            <div style="font-size: 2rem; font-weight: bold; color: var(--un-blue);">71</div>
-                            <div>عملية حفظ سلام منذ 1948</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- نافذة منبثقة لحقوق الإنسان -->
-    <div class="modal-overlay" id="rights-modal">
-        <div class="modal">
-            <div class="modal-header">
-                <h3>حقوق الإنسان</h3>
-                <button class="modal-close" data-modal="rights-modal">×</button>
-            </div>
-            <div class="modal-content">
-                <div class="modal-section">
-                    <h4>حماية وتعزيز حقوق الإنسان</h4>
-                    <p>تعمل الأمم المتحدة على حماية وتعزيز حقوق الإنسان للجميع دون تمييز. وتسترشد في عملها بالإعلان العالمي لحقوق الإنسان والمعاهدات الدولية الأخرى لحقوق الإنسان. وتسعى المنظمة إلى دمج حقوق الإنسان في جميع برامجها وأنشطتها.</p>
-                </div>
-                
-                <div class="modal-section">
-                    <h4>المجالات الرئيسية</h4>
-                    <ul style="line-height: 1.8;">
-                        <li><strong>الحقوق المدنية والسياسية:</strong> الحق في الحياة، حرية التعبير، حرية الدين، الحق في محاكمة عادلة.</li>
-                        <li><strong>الحقوق الاقتصادية والاجتماعية والثقافية:</strong> الحق في العمل، الحق في التعليم، الحق في الصحة، الحق في السكن اللائق.</li>
-                        <li><strong>حقوق الفئات المستضعفة:</strong> حقوق المرأة، حقوق الطفل، حقوق الأشخاص ذوي الإعاقة، حقوق اللاجئين.</li>
-                        <li><strong>مكافحة التمييز:</strong> مكافحة التمييز على أساس العرق، الجنس، الدين، أو أي وضع آخر.</li>
-                        <li><strong>العدالة وسيادة القانون:</strong> دعم أنظمة العدالة وتعزيز سيادة القانون على المستوى الوطني والدولي.</li>
-                    </ul>
-                </div>
-                
-                <div class="modal-section">
-                    <h4>آليات حقوق الإنسان</h4>
-                    <p>تعتمد الأمم المتحدة على عدة آليات لمراقبة وتعزيز حقوق الإنسان:</p>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem;">
-                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #4CAF50;">
-                            <strong>مجلس حقوق الإنسان:</strong> هيئة حكومية دولية مسؤولة عن تعزيز وحماية حقوق الإنسان حول العالم.
-                        </div>
-                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #2196F3;">
-                            <strong>المفوضية السامية لحقوق الإنسان:</strong> المسؤولة عن أنشطة الأمم المتحدة في مجال حقوق الإنسان.
-                        </div>
-                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #FF9800;">
-                            <strong>لجان المعاهدات:</strong> هيئات الخبراء المستقلة التي ترصد تنفيذ المعاهدات الدولية الأساسية لحقوق الإنسان.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- نافذة منبثقة للتنمية المستدامة -->
-    <div class="modal-overlay" id="development-modal">
-        <div class="modal">
-            <div class="modal-header">
-                <h3>التنمية المستدامة</h3>
-                <button class="modal-close" data-modal="development-modal">×</button>
-            </div>
-            <div class="modal-content">
-                <div class="modal-section">
-                    <h4>تعزيز التنمية المستدامة عالمياً</h4>
-                    <p>تعمل الأمم المتحدة على تعزيز التنمية المستدامة التي تلبي احتياجات الحاضر دون المساس بقدرة الأجيال المقبلة على تلبية احتياجاتها الخاصة. وتشمل التنمية المستدامة ثلاثة أبعاد مترابطة: التنمية الاقتصادية، والتنمية الاجتماعية، وحماية البيئة.</p>
-                </div>
-                
-                <div class="modal-section">
-                    <h4>مجالات التركيز</h4>
-                    <ul style="line-height: 1.8;">
-                        <li><strong>القضاء على الفقر:</strong> خفض نسبة الأشخاص الذين يعيشون تحت خط الفقر إلى النصف بحلول عام 2030.</li>
-                        <li><strong>الصحة الجيدة والرفاه:</strong> ضمان حياة صحية وتعزيز الرفاه للجميع في جميع الأعمار.</li>
-                        <li><strong>التعليم الجيد:</strong> ضمان التعليم الجيد المنصف والشامل وتعزيز فرص التعلم مدى الحياة للجميع.</li>
-                        <li><strong>المساواة بين الجنسين:</strong> تحقيق المساواة بين الجنسين وتمكين جميع النساء والفتيات.</li>
-                        <li><strong>العمل المناخي:</strong> اتخاذ إجراءات عاجلة لمكافحة تغير المناخ وآثاره.</li>
-                        <li><strong>الطاقة النظيفة:</strong> ضمان حصول الجميع على خدمات الطاقة الحديثة الموثوقة والمستدامة.</li>
-                    </ul>
-                </div>
-                
-                <div class="modal-section">
-                    <h4>إنجازات التنمية المستدامة</h4>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
-                        <div style="background: var(--un-blue-light); padding: 1rem; border-radius: 10px; text-align: center;">
-                            <div style="font-size: 2rem; font-weight: bold; color: var(--un-blue);">1B+</div>
-                            <div>شخص تم انتشالهم من الفقر المدقع منذ 1990</div>
-                        </div>
-                        <div style="background: var(--un-blue-light); padding: 1rem; border-radius: 10px; text-align: center;">
-                            <div style="font-size: 2rem; font-weight: bold; color: var(--un-blue);">91%</div>
-                            <div>من سكان العالم يحصلون على مياه شرب محسنة</div>
-                        </div>
-                        <div style="background: var(--un-blue-light); padding: 1rem; border-radius: 10px; text-align: center;">
-                            <div style="font-size: 2rem; font-weight: bold; color: var(--un-blue);">2.6B</div>
-                            <div>شخص حصلوا على خدمات صرف صحي محسنة</div>
-                        </div>
-                        <div style="background: var(--un-blue-light); padding: 1rem; border-radius: 10px; text-align: center;">
-                            <div style="font-size: 2rem; font-weight: bold; color: var(--un-blue);">90%</div>
-                            <div>من الأطفال في المناطق النامية يلتحقون بالمدارس</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- نافذة منبثقة للجمعية العامة -->
-    <div class="modal-overlay" id="assembly-modal">
-        <div class="modal">
-            <div class="modal-header">
-                <h3>الجمعية العامة للأمم المتحدة</h3>
-                <button class="modal-close" data-modal="assembly-modal">×</button>
-            </div>
-            <div class="modal-content">
-                <div class="modal-section">
-                    <h4>الجهاز الرئيسي للتداول في الأمم المتحدة</h4>
-                    <p>الجمعية العامة هي الجهاز الرئيسي للتداول وصنع السياسات والتمثيل في الأمم المتحدة. وتضم جميع الدول الأعضاء البالغ عددها 193 دولة، ولكل دولة صوت واحد. وتجتمع الجمعية العامة في دورات عادية سنوية تبدأ في سبتمبر من كل عام.</p>
-                </div>
-                
-                <div class="modal-section">
-                    <h4>الوظائف والصلاحيات</h4>
-                    <ul style="line-height: 1.8;">
-                        <li><strong>مناقشة جميع المسائل:</strong> يمكن للجمعية العامة مناقشة أي مسألة تدخل في نطاق ميثاق الأمم المتحدة.</li>
-                        <li><strong>تقديم التوصيات:</strong> يمكنها تقديم توصيات إلى الدول الأعضاء أو مجلس الأمن بشأن هذه المسائل.</li>
-                        <li><strong>اعتماد الميزانية:</strong> تدرس وتوافق على ميزانية الأمم المتحدة وتحدد الأنصبة المالية للأعضاء.</li>
-                        <li><strong>انتخاب الأعضاء:</strong> تنتخب الأعضاء غير الدائمين في مجلس الأمن وأعضاء المجلس الاقتصادي والاجتماعي.</li>
-                        <li><strong>تعيين الأمين العام:</strong> بناء على توصية مجلس الأمن، تنتخب الجمعية العامة الأمين العام للأمم المتحدة.</li>
-                    </ul>
-                </div>
-                
-                <div class="modal-section">
-                    <h4>لجان الجمعية العامة</h4>
-                    <p>تنقسم الجمعية العامة إلى ست لجان رئيسية:</p>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem;">
-                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #4CAF50;">
-                            <strong>اللجنة الأولى:</strong> نزع السلاح والأمن الدولي
-                        </div>
-                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #2196F3;">
-                            <strong>اللجنة الثانية:</strong> المسائل الاقتصادية والمالية
-                        </div>
-                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #FF9800;">
-                            <strong>اللجنة الثالثة:</strong> المسائل الاجتماعية والإنسانية والثقافية
-                        </div>
-                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #9C27B0;">
-                            <strong>اللجنة الرابعة:</strong> المسائل السياسية الخاصة وإنهاء الاستعمار
-                        </div>
-                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #3F51B5;">
-                            <strong>اللجنة الخامسة:</strong> المسائل الإدارية والمالية
-                        </div>
-                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #009688;">
-                            <strong>اللجنة السادسة:</strong> المسائل القانونية
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- نافذة منبثقة لمجلس الأمن -->
-    <div class="modal-overlay" id="security-modal">
-        <div class="modal">
-            <div class="modal-header">
-                <h3>مجلس الأمن التابع للأمم المتحدة</h3>
-                <button class="modal-close" data-modal="security-modal">×</button>
-            </div>
-            <div class="modal-content">
-                <div class="modal-section">
-                    <h4>المسؤول الرئيسي عن حفظ السلام والأمن الدوليين</h4>
-                    <p>مجلس الأمن هو الجهاز المسؤول عن حفظ السلام والأمن الدوليين وفقاً لميثاق الأمم المتحدة. ويتخذ المجلس قرارات ملزمة للدول الأعضاء، وله سلطة فرض عقوبات وصولاً إلى تفويض استخدام القوة للحفاظ على السلام والأمن الدوليين أو استعادتهما.</p>
-                </div>
-                
-                <div class="modal-section">
-                    <h4>التكوين والعضوية</h4>
-                    <ul style="line-height: 1.8;">
-                        <li><strong>الأعضاء الدائمون (5 دول):</strong> الصين، فرنسا، روسيا، المملكة المتحدة، الولايات المتحدة. لكل منها حق النقض (الفيتو).</li>
-                        <li><strong>الأعضاء غير الدائمين (10 دول):</strong> تنتخبهم الجمعية العامة لمدة سنتين، مع مراعاة التوزيع الجغرافي العادل.</li>
-                        <li><strong>الرئاسة:</strong> تتبادل الدول الأعضاء رئاسة المجلس شهرياً حسب الترتيب الأبجدي الإنجليزي لأسمائها.</li>
-                        <li><strong>التصويت:</strong> تحتاج القرارات بشأن المسائل الموضوعية إلى تأييد 9 أصوات من أصل 15، بما في ذلك أصوات جميع الأعضاء الدائمين (ما لم يمتنعوا).</li>
-                    </ul>
-                </div>
-                
-                <div class="modal-section">
-                    <h4>الصلاحيات والوظائف</h4>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem;">
-                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #E53935;">
-                            <strong>حفظ السلام:</strong> نشر بعثات حفظ السلام في مناطق النزاع
-                        </div>
-                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #E53935;">
-                            <strong>فرض العقوبات:</strong> فرض عقوبات اقتصادية ودبلوماسية على الدول
-                        </div>
-                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #E53935;">
-                            <strong>تفويض استخدام القوة:</strong> التفويض باستخدام القوة لحفظ السلام
-                        </div>
-                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #E53935;">
-                            <strong>إنشاء المحاكم الدولية:</strong> إنشاء محاكم دولية لمحاكمة مجرمي الحرب
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="modal-section">
-                    <h4>عمليات حفظ السلام الحالية</h4>
-                    <p>يدير مجلس الأمن حالياً 12 بعثة حفظ سلام في مناطق مختلفة من العالم، منها:</p>
-                    <ul style="line-height: 1.8;">
-                        <li><strong>بعثة الأمم المتحدة في جنوب السودان (UNMISS)</strong> - منذ 2011</li>
-                        <li><strong>بعثة الأمم المتحدة في جمهورية الكونغو الديمقراطية (MONUSCO)</strong> - منذ 1999</li>
-                        <li><strong>بعثة الأمم المتحدة في لبنان (UNIFIL)</strong> - منذ 1978</li>
-                        <li><strong>بعثة الأمم المتحدة في مالي (MINUSMA)</strong> - منذ 2013</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- نافذة منبثقة للمجلس الاقتصادي والاجتماعي -->
-    <div class="modal-overlay" id="economic-modal">
-        <div class="modal">
-            <div class="modal-header">
-                <h3>المجلس الاقتصادي والاجتماعي للأمم المتحدة</h3>
-                <button class="modal-close" data-modal="economic-modal">×</button>
-            </div>
-            <div class="modal-content">
-                <div class="modal-section">
-                    <h4>الجهاز الرئيسي لتنسيق العمل الاقتصادي والاجتماعي</h4>
-                    <p>المجلس الاقتصادي والاجتماعي هو الجهاز الرئيسي لتنسيق العمل الاقتصادي والاجتماعي للأمم المتحدة والوكالات المتخصصة والمؤسسات التابعة لها. ويشرف المجلس على أكثر من 70% من الموارد البشرية والمالية لمنظومة الأمم المتحدة.</p>
-                </div>
-                
-                <div class="modal-section">
-                    <h4>التكوين والعضوية</h4>
-                    <ul style="line-height: 1.8;">
-                        <li><strong>عدد الأعضاء:</strong> 54 عضواً تنتخبهم الجمعية العامة لمدة ثلاث سنوات.</li>
-                        <li><strong>التوزيع الجغرافي:</strong> 14 مقعداً لأفريقيا، 11 مقعداً لآسيا، 6 مقاعد لأوروبا الشرقية، 10 مقاعد لأمريكا اللاتينية ومنطقة البحر الكاريبي، 13 مقعداً لأوروبا الغربية ودول أخرى.</li>
-                        <li><strong>الرئاسة:</strong> تنتخب الجمعية العامة رئيساً للمجلس كل عام.</li>
-                        <li><strong>الجلسات:</strong> يعقد المجلس دورة رئيسية كل عام في يوليو، تعقد في نيويورك وجنيف بالتناوب.</li>
-                    </ul>
-                </div>
-                
-                <div class="modal-section">
-                    <h4>اللجان والهيئات التابعة</h4>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem;">
-                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #FF9800;">
-                            <strong>اللجان الفنية:</strong> 9 لجان فنية تعالج قضايا مثل حقوق الإنسان والمرأة والتنمية الاجتماعية
-                        </div>
-                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #FF9800;">
-                            <strong>اللجان الإقليمية:</strong> 5 لجان إقليمية تغطي أفريقيا وأوروبا وآسيا والمحيط الهادئ وأمريكا اللاتينية وغرب آسيا
-                        </div>
-                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #FF9800;">
-                            <strong>الهيئات المتخصصة:</strong> تنسيق مع منظمة الصحة العالمية، اليونسكو، منظمة العمل الدولية، وغيرها
-                        </div>
-                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #FF9800;">
-                            <strong>اللجان الدائمة:</strong> لجان للبرامج والتنسيق، والمنظمات غير الحكومية، والمؤتمرات
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="modal-section">
-                    <h4>المجالات الرئيسية للعمل</h4>
-                    <ul style="line-height: 1.8;">
-                        <li><strong>التنمية المستدامة:</strong> تنسيق تنفيذ أهداف التنمية المستدامة الـ 17</li>
-                        <li><strong>حقوق الإنسان:</strong> دعم وتعزيز حقوق الإنسان على مستوى العالم</li>
-                        <li><strong>المساواة بين الجنسين:</strong> تمكين المرأة والمساواة بين الجنسين</li>
-                        <li><strong>التنمية الاجتماعية:</strong> مكافحة الفقر وتعزيز التنمية الاجتماعية</li>
-                        <li><strong>الصحة العالمية:</strong> تنسيق الجهود العالمية في مجال الصحة</li>
-                        <li><strong>التعليم:</strong> ضمان التعليم الجيد للجميع</li>
-                        <li><strong>حماية البيئة:</strong> معالجة التحديات البيئية العالمية</li>
-                    </ul>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // تأثيرات التمرير
-        window.addEventListener('scroll', function() {
-            // تأثير شريط التنقل
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
+        // دالة لإغلاق القائمة المتنقلة على الجوال
+        function closeMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            if (window.innerWidth <= 991) {
+                navLinks.classList.remove('active');
             }
-            
-            // تأثير الظهور التدريجي للعناصر
-            const fadeElements = document.querySelectorAll('.fade-in');
-            fadeElements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if (elementTop < windowHeight - 100) {
-                    element.classList.add('visible');
-                }
-            });
-            
-            // تأثير العد للأرقام في الإحصائيات
-            const countElements = document.querySelectorAll('.animate-count');
-            countElements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if (elementTop < windowHeight - 100 && !element.classList.contains('animated')) {
-                    animateCount(element);
-                    element.classList.add('animated');
-                }
-            });
-        });
-        
-        // دالة العد التصاعدي للأرقام
-        function animateCount(element) {
-            const target = parseInt(element.getAttribute('data-target'));
-            const duration = 2000;
-            const step = target / (duration / 16);
-            let current = 0;
-            
-            const timer = setInterval(() => {
-                current += step;
-                if (current >= target) {
-                    element.textContent = target;
-                    clearInterval(timer);
-                } else {
-                    element.textContent = Math.floor(current);
-                }
-            }, 16);
         }
         
-        // إدارة النوافذ المنبثقة
+        // تهيئة الموقع عند التحميل
         document.addEventListener('DOMContentLoaded', function() {
-            // القائمة المتنقلة للهواتف
+            // القائمة المتنقلة
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             const navLinks = document.getElementById('navLinks');
             
             mobileMenuBtn.addEventListener('click', function() {
-                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+                navLinks.classList.toggle('active');
             });
             
-            // إغلاق القائمة عند النقر على رابط
-            const navItems = document.querySelectorAll('.nav-links a');
-            navItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    if (window.innerWidth <= 1100) {
-                        navLinks.style.display = 'none';
-                    }
-                });
+            // إغلاق القائمة عند النقر خارجها
+            document.addEventListener('click', function(event) {
+                if (!navLinks.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
+                    navLinks.classList.remove('active');
+                }
             });
             
             // زر تسجيل الدخول
@@ -1925,18 +1563,20 @@
                 document.querySelector('#about').scrollIntoView({ behavior: 'smooth' });
             });
             
-            // إظهار النوافذ المنبثقة عند النقر على البطاقات
+            // فتح النوافذ المنبثقة للبطاقات
             const cards = document.querySelectorAll('.card[data-modal]');
             cards.forEach(card => {
                 card.addEventListener('click', function() {
                     const modalId = this.getAttribute('data-modal');
                     const modal = document.getElementById(modalId);
-                    modal.classList.add('active');
-                    document.body.style.overflow = 'hidden';
+                    if (modal) {
+                        modal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    }
                 });
             });
             
-            // إظهار نافذة أهداف التنمية المستدامة
+            // فتح نافذة أهداف التنمية المستدامة
             const showAllGoalsBtn = document.getElementById('showAllGoals');
             const goalsModal = document.getElementById('goals-modal');
             const closeGoalsModal = document.getElementById('closeGoalsModal');
@@ -1951,14 +1591,25 @@
                 document.body.style.overflow = 'auto';
             });
             
+            // فتح أهداف التنمية عند النقر عليها
+            const sdgItems = document.querySelectorAll('.sdg-item');
+            sdgItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    goalsModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+            
             // إغلاق النوافذ المنبثقة
             const closeButtons = document.querySelectorAll('.modal-close');
             closeButtons.forEach(button => {
                 button.addEventListener('click', function() {
                     const modalId = this.getAttribute('data-modal') || 'goals-modal';
                     const modal = document.getElementById(modalId);
-                    modal.classList.remove('active');
-                    document.body.style.overflow = 'auto';
+                    if (modal) {
+                        modal.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    }
                 });
             });
             
@@ -1973,194 +1624,139 @@
                 });
             });
             
-            // تأثير النقر على أهداف التنمية المستدامة
-            const sdgItems = document.querySelectorAll('.sdg-item');
-            sdgItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    const goal = this.getAttribute('data-goal');
-                    
-                    // إظهار النافذة المنبثقة لأهداف التنمية
-                    goalsModal.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                    
-                    // تمرير إلى القسم المناسب في النافذة
-                    setTimeout(() => {
-                        const modalContent = document.querySelector('.modal-content');
-                        modalContent.scrollTop = 0;
-                    }, 100);
-                });
-            });
-            
-            // التمرير السلس عند النقر على روابط التنقل
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-            
-            // إظهار العناصر المرئية عند التحميل
-            const fadeElements = document.querySelectorAll('.fade-in');
-            fadeElements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if (elementTop < windowHeight - 100) {
-                    element.classList.add('visible');
-                }
-            });
-            
-            // بدء تأثير العد للأرقام في الإحصائيات
-            setTimeout(() => {
-                const countElements = document.querySelectorAll('.animate-count');
-                countElements.forEach(element => {
-                    if (element.getBoundingClientRect().top < window.innerHeight - 100) {
-                        animateCount(element);
-                        element.classList.add('animated');
-                    }
-                });
-            }, 500);
-            
-            // تغيير لون الأيقونة في القائمة المتنقلة
-            window.addEventListener('resize', function() {
-                if (window.innerWidth > 1100) {
-                    navLinks.style.display = 'flex';
-                } else {
-                    navLinks.style.display = 'none';
-                }
-            });
-            
-            // تفعيل واجهة التبرع
-            const donationAmounts = document.querySelectorAll('.donation-amount');
-            donationAmounts.forEach(amount => {
-                amount.addEventListener('click', function() {
-                    // إزالة النشاط من جميع المبالغ
-                    donationAmounts.forEach(a => a.classList.remove('active'));
-                    // إضافة النشاط للمبلغ المختار
-                    this.classList.add('active');
-                    // تعيين القيمة في حقل الإدخال
-                    document.getElementById('donation-amount').value = this.getAttribute('data-amount');
-                });
-            });
-            
-            // تفعيل طرق الدفع
-            const paymentMethods = document.querySelectorAll('.payment-method');
-            paymentMethods.forEach(method => {
-                method.addEventListener('click', function() {
-                    // إزالة النشاط من جميع الطرق
-                    paymentMethods.forEach(m => m.classList.remove('active'));
-                    // إضافة النشاط للطريقة المختارة
-                    this.classList.add('active');
-                    
-                    // إظهار أو إخفاء تفاصيل بطاقة الائتمان
-                    const methodType = this.getAttribute('data-method');
-                    const creditCardDetails = document.getElementById('credit-card-details');
-                    
-                    if (methodType === 'credit') {
-                        creditCardDetails.style.display = 'block';
+            // تأثير العد للأرقام
+            function animateCounter(element, target, duration = 2000) {
+                let current = 0;
+                const increment = target / (duration / 16);
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        element.textContent = target;
+                        clearInterval(timer);
                     } else {
-                        creditCardDetails.style.display = 'none';
+                        element.textContent = Math.floor(current);
                     }
-                });
-            });
-            
-            // تفعيل زر التبرع النهائي
-            const submitDonationBtn = document.getElementById('submit-donation');
-            submitDonationBtn.addEventListener('click', function() {
-                const amount = document.getElementById('donation-amount').value;
-                const purpose = document.getElementById('donation-purpose').value;
-                const name = document.getElementById('donor-name').value;
-                const email = document.getElementById('donor-email').value;
-                
-                if (!amount || !purpose || !name || !email) {
-                    alert('يرجى ملء جميع الحقول المطلوبة');
-                    return;
-                }
-                
-                // محاكاة عملية التبرع الناجحة
-                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري المعالجة...';
-                this.disabled = true;
-                
-                setTimeout(() => {
-                    alert(`شكراً لك ${name} على تبرعك البالغ $${amount} لدعم ${getPurposeText(purpose)}. تم إرسال إيصال التبرع إلى ${email}`);
-                    
-                    // إعادة تعيين النموذج
-                    document.getElementById('donation-amount').value = '';
-                    document.getElementById('donation-purpose').value = '';
-                    document.getElementById('donor-name').value = '';
-                    document.getElementById('donor-email').value = '';
-                    document.getElementById('donor-message').value = '';
-                    document.getElementById('donation-receipt').checked = false;
-                    
-                    donationAmounts.forEach(a => a.classList.remove('active'));
-                    paymentMethods.forEach(m => m.classList.remove('active'));
-                    document.getElementById('credit-card-details').style.display = 'none';
-                    
-                    this.innerHTML = 'التبرع الآن';
-                    this.disabled = false;
-                    
-                    // إغلاق النافذة
-                    donationModal.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }, 2000);
-            });
-            
-            // وظيفة مساعدة للحصول على نص جهة التبرع
-            function getPurposeText(value) {
-                const purposes = {
-                    'yemen': 'مشاريع اليمن الإنسانية',
-                    'education': 'برامج التعليم حول العالم',
-                    'health': 'برامج الصحة والرعاية الطبية',
-                    'peace': 'عمليات حفظ السلام',
-                    'refugees': 'دعم اللاجئين والنازحين',
-                    'general': 'أعمال الأمم المتحدة'
-                };
-                return purposes[value] || 'أعمال الأمم المتحدة';
+                }, 16);
             }
             
-            // محاكاة تسجيل الدخول
-            const loginSubmitBtn = document.querySelector('#login-modal .btn-primary');
-            loginSubmitBtn.addEventListener('click', function() {
-                const email = document.getElementById('login-email').value;
-                const password = document.getElementById('login-password').value;
+            // تشغيل العد عند التمرير إلى الأرقام
+            function startCountersWhenVisible() {
+                const counters = [
+                    { id: 'count1', target: 193 },
+                    { id: 'count2', target: 75 },
+                    { id: 'count3', target: 17 },
+                    { id: 'count4', target: 12 }
+                ];
                 
-                if (!email || !password) {
-                    alert('يرجى إدخال البريد الإلكتروني وكلمة المرور');
-                    return;
+                counters.forEach(counter => {
+                    const element = document.getElementById(counter.id);
+                    if (element && !element.hasAttribute('data-counted')) {
+                        const rect = element.getBoundingClientRect();
+                        if (rect.top < window.innerHeight && rect.bottom >= 0) {
+                            animateCounter(element, counter.target);
+                            element.setAttribute('data-counted', 'true');
+                        }
+                    }
+                });
+            }
+            
+            // بدء العد بعد تحميل الصفحة
+            setTimeout(() => {
+                startCountersWhenVisible();
+            }, 500);
+            
+            // التحقق من رؤية العدادات أثناء التمرير
+            window.addEventListener('scroll', startCountersWhenVisible);
+            
+            // إدارة زر التبرع
+            const submitDonationBtn = document.getElementById('submit-donation');
+            if (submitDonationBtn) {
+                submitDonationBtn.addEventListener('click', function() {
+                    const amountInputs = document.querySelectorAll('#donation-modal input[type="number"]');
+                    const nameInput = document.querySelector('#donation-modal input[type="text"]');
+                    const emailInput = document.querySelector('#donation-modal input[type="email"]');
+                    
+                    let valid = true;
+                    
+                    if (!amountInputs[0].value || parseInt(amountInputs[0].value) <= 0) {
+                        valid = false;
+                        alert('يرجى إدخال مبلغ تبرع صحيح');
+                    }
+                    
+                    if (!nameInput.value.trim()) {
+                        valid = false;
+                        alert('يرجى إدخال الاسم الكامل');
+                    }
+                    
+                    if (!emailInput.value.trim() || !emailInput.value.includes('@')) {
+                        valid = false;
+                        alert('يرجى إدخال بريد إلكتروني صحيح');
+                    }
+                    
+                    if (valid) {
+                        // عرض رسالة نجاح
+                        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري المعالجة...';
+                        this.disabled = true;
+                        
+                        setTimeout(() => {
+                            alert(`شكراً لك على تبرعك البالغ $${amountInputs[0].value} لدعم أعمال الأمم المتحدة. تم إرسال تأكيد إلى ${emailInput.value}`);
+                            
+                            // إعادة تعيين الحقول
+                            amountInputs.forEach(input => input.value = '');
+                            nameInput.value = '';
+                            emailInput.value = '';
+                            
+                            // إعادة تعيين الأزرار
+                            const amountBtns = document.querySelectorAll('#donation-modal .btn-outline');
+                            amountBtns.forEach(btn => btn.classList.remove('btn-primary'));
+                            
+                            this.innerHTML = 'التبرع الآن';
+                            this.disabled = false;
+                            
+                            // إغلاق النافذة
+                            donationModal.classList.remove('active');
+                            document.body.style.overflow = 'auto';
+                        }, 1500);
+                    }
+                });
+            }
+            
+            // إدارة أزرار مبلغ التبرع
+            const donationAmountBtns = document.querySelectorAll('#donation-modal .btn-outline[data-amount]');
+            donationAmountBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // إزالة التحديد من جميع الأزرار
+                    donationAmountBtns.forEach(b => b.classList.remove('btn-primary'));
+                    
+                    // تحديد الزر الحالي
+                    this.classList.add('btn-primary');
+                    
+                    // تعيين القيمة في حقل الإدخال
+                    const amount = this.getAttribute('data-amount');
+                    const amountInput = document.querySelector('#donation-modal input[type="number"]');
+                    if (amountInput) {
+                        amountInput.value = amount;
+                    }
+                });
+            });
+            
+            // إدارة أزرار طريقة الدفع
+            const paymentMethodBtns = document.querySelectorAll('#donation-modal .btn-outline[data-method]');
+            paymentMethodBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // إزالة التحديد من جميع الأزرار
+                    paymentMethodBtns.forEach(b => b.classList.remove('btn-primary'));
+                    
+                    // تحديد الزر الحالي
+                    this.classList.add('btn-primary');
+                });
+            });
+            
+            // تحسين تجربة الجوال: إغلاق القائمة عند تغيير حجم النافذة
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 991) {
+                    navLinks.classList.remove('active');
                 }
-                
-                // محاكاة عملية تسجيل الدخول
-                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري تسجيل الدخول...';
-                this.disabled = true;
-                
-                setTimeout(() => {
-                    alert(`تم تسجيل الدخول بنجاح! مرحباً بك ${email}`);
-                    
-                    // إعادة تعيين النموذج
-                    document.getElementById('login-email').value = '';
-                    document.getElementById('login-password').value = '';
-                    document.getElementById('remember-me').checked = false;
-                    
-                    this.innerHTML = 'تسجيل الدخول';
-                    this.disabled = false;
-                    
-                    // إغلاق النافذة
-                    loginModal.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                    
-                    // تغيير نص زر تسجيل الدخول في الشريط العلوي
-                    loginBtn.innerHTML = '<i class="fas fa-user"></i> حسابي';
-                }, 1500);
             });
         });
     </script>
