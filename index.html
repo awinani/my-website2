@@ -1,0 +1,1547 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الأمم المتحدة - السلام العالمي والتنمية المستدامة</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --un-blue: #0065B3;
+            --un-blue-dark: #004d8a;
+            --un-blue-light: #E6F2FF;
+            --un-gold: #FFD700;
+            --un-green: #4CAF50;
+            --un-red: #E53935;
+            --gradient-primary: linear-gradient(135deg, #0065B3 0%, #004d8a 100%);
+            --gradient-secondary: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+            --shadow-soft: 0 8px 30px rgba(0, 101, 179, 0.1);
+            --shadow-strong: 0 15px 40px rgba(0, 101, 179, 0.15);
+            --shadow-hover: 0 20px 50px rgba(0, 101, 179, 0.25);
+            --transition-smooth: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans Arabic', 'Roboto', sans-serif;
+            direction: rtl;
+            margin: 0;
+            padding: 0;
+            background-color: #f8fafc;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        /* تصميم شريط التنقل العلوي */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-soft);
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 0.8rem 2rem;
+            transition: var(--transition-smooth);
+        }
+        
+        .navbar.scrolled {
+            padding: 0.5rem 2rem;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-strong);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .logo-img {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            box-shadow: var(--shadow-soft);
+        }
+        
+        .logo-text h2 {
+            margin: 0;
+            color: var(--un-blue);
+            font-weight: 800;
+            font-size: 1.5rem;
+        }
+        
+        .logo-text p {
+            margin: 0;
+            color: #666;
+            font-size: 0.85rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #444;
+            font-weight: 600;
+            font-size: 1rem;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: var(--transition-smooth);
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 3px;
+            background: var(--un-blue);
+            border-radius: 2px;
+            transition: var(--transition-smooth);
+        }
+        
+        .nav-links a:hover {
+            color: var(--un-blue);
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .nav-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .btn {
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            border: none;
+            font-family: 'Noto Sans Arabic', sans-serif;
+            font-size: 0.95rem;
+        }
+        
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 101, 179, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 101, 179, 0.4);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--un-blue);
+            border: 2px solid var(--un-blue);
+        }
+        
+        .btn-outline:hover {
+            background: var(--un-blue);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        /* تصميم الهيرو سيكشن مع تأثير Blur */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(0, 101, 179, 0.85), rgba(0, 101, 179, 0.9));
+            color: white;
+            padding: 0 2rem;
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-background {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            filter: blur(8px) brightness(0.7);
+            z-index: -1;
+            transform: scale(1.1);
+        }
+        
+        .hero-background-overlay {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(0, 101, 179, 0.7), rgba(0, 101, 179, 0.3));
+            z-index: -1;
+        }
+        
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            z-index: 2;
+            position: relative;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            line-height: 1.6;
+            opacity: 0.95;
+        }
+        
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        /* تصميم البطاقات */
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--un-blue);
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 100px;
+            height: 5px;
+            background: var(--gradient-primary);
+            border-radius: 5px;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-light {
+            background-color: #f8fafc;
+        }
+        
+        .section-dark {
+            background: var(--gradient-primary);
+            color: white;
+        }
+        
+        .section-dark .section-title h2 {
+            color: white;
+        }
+        
+        .section-dark .section-title h2:after {
+            background: white;
+        }
+        
+        .section-dark .section-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition-smooth);
+            height: 100%;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .card:hover {
+            transform: translateY(-15px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-primary);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+            margin: 2rem auto 1.5rem;
+            box-shadow: 0 10px 20px rgba(0, 101, 179, 0.2);
+            transition: var(--transition-smooth);
+        }
+        
+        .card:hover .card-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .card-content {
+            padding: 0 2rem 2rem;
+        }
+        
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--un-blue);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .card-text {
+            color: #666;
+            line-height: 1.7;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .card-link {
+            color: var(--un-blue);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: var(--transition-smooth);
+        }
+        
+        .card-link:hover {
+            gap: 1rem;
+            color: var(--un-blue-dark);
+        }
+        
+        /* تصميم أهداف التنمية المستدامة */
+        .sdg-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        .sdg-item {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition-smooth);
+            cursor: pointer;
+        }
+        
+        .sdg-item:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .sdg-number {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin: 0 auto 1rem;
+        }
+        
+        .sdg-title {
+            font-weight: 600;
+            color: #444;
+            font-size: 1rem;
+        }
+        
+        /* تصميم مشاريع اليمن */
+        .yemen-projects {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-strong);
+            margin-top: 3rem;
+            background: #fff;
+        }
+        
+        .yemen-header {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .yemen-header h3 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .yemen-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+        
+        .project-card {
+            background: #f8fafc;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition-smooth);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .project-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .project-title {
+            font-size: 1.3rem;
+            color: var(--un-blue);
+            margin-bottom: 0.8rem;
+        }
+        
+        .project-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--un-blue);
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        /* تصميم الفوتر */
+        .footer {
+            background: #0a1a2d;
+            color: white;
+            padding: 5rem 2rem 2rem;
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: white;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--un-blue);
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-right: 10px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            transition: var(--transition-smooth);
+        }
+        
+        .social-icon:hover {
+            background: var(--un-blue);
+            transform: translateY(-5px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* تصميم القائمة المتنقلة للهواتف */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--un-blue);
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+        
+        /* تأثيرات الحركة */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* تصميم النوافذ المنبثقة */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            padding: 1rem;
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal {
+            background: white;
+            border-radius: 20px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-hover);
+            transform: translateY(30px);
+            transition: transform 0.4s ease;
+        }
+        
+        .modal-overlay.active .modal {
+            transform: translateY(0);
+        }
+        
+        .modal-header {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1.5rem 2rem;
+            border-radius: 20px 20px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-header h3 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+        
+        .modal-close:hover {
+            transform: rotate(90deg);
+        }
+        
+        .modal-content {
+            padding: 2rem;
+        }
+        
+        .modal-section {
+            margin-bottom: 2rem;
+        }
+        
+        .modal-section h4 {
+            color: var(--un-blue);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--un-blue-light);
+        }
+        
+        /* تصميم متجاوب */
+        @media (max-width: 1100px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .hero-stats {
+                flex-wrap: wrap;
+                gap: 2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .section {
+                padding: 4rem 1.5rem;
+            }
+            
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .sdg-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .yemen-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .stat-number {
+                font-size: 2.2rem;
+            }
+            
+            .sdg-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل العلوي -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-img">
+                    <i class="fas fa-globe-americas"></i>
+                </div>
+                <div class="logo-text">
+                    <h2>الأمم المتحدة</h2>
+                    <p>من أجل السلام والتنمية العالمية</p>
+                </div>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#about">عن المنظمة</a></li>
+                <li><a href="#goals">أهداف التنمية</a></li>
+                <li><a href="#structure">الهيكل التنظيمي</a></li>
+                <li><a href="#yemen">مشاريع اليمن</a></li>
+                <li><a href="#contact">اتصل بنا</a></li>
+            </ul>
+            
+            <div class="nav-actions">
+                <button class="btn btn-outline">تسجيل الدخول</button>
+                <button class="btn btn-primary">التبرع الآن</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- قسم الهيرو الرئيسي مع تأثير Blur -->
+    <section class="hero" id="home">
+        <div class="hero-background"></div>
+        <div class="hero-background-overlay"></div>
+        
+        <div class="hero-content animate__animated animate__fadeInUp">
+            <h1 class="hero-title">نعمل معاً لبناء عالم أفضل للجميع</h1>
+            <p class="hero-subtitle">
+                الأمم المتحدة هي منظمة دولية تأسست عام 1945. تضم حالياً 193 دولة عضو. تكرس الأمم المتحدة جهودها للحفاظ على السلام والأمن الدوليين، وحماية حقوق الإنسان، وتقديم المساعدات الإنسانية، وتعزيز التنمية المستدامة، ودعم القانون الدولي.
+            </p>
+            <div class="hero-actions">
+                <button class="btn btn-primary" style="padding: 1rem 2.5rem; font-size: 1.1rem;">استكشف أعمالنا</button>
+                <button class="btn btn-outline" style="padding: 1rem 2.5rem; font-size: 1.1rem; margin-right: 1rem; color: white; border-color: white;">شاهد الفيديو</button>
+            </div>
+            
+            <div class="hero-stats">
+                <div class="stat-item fade-in">
+                    <span class="stat-number animate-count" data-target="193">0</span>
+                    <span class="stat-label">دولة عضو</span>
+                </div>
+                <div class="stat-item fade-in">
+                    <span class="stat-number animate-count" data-target="75">0</span>
+                    <span class="stat-label">عاماً من الخدمة</span>
+                </div>
+                <div class="stat-item fade-in">
+                    <span class="stat-number animate-count" data-target="17">0</span>
+                    <span class="stat-label">هدف تنمية مستدام</span>
+                </div>
+                <div class="stat-item fade-in">
+                    <span class="stat-number animate-count" data-target="12">0</span>
+                    <span class="stat-label">بعثة حفظ سلام</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- عناصر عائمة للخلفية -->
+        <div class="float-animation" style="position: absolute; top: 20%; left: 10%; color: rgba(255,255,255,0.1); font-size: 5rem;">
+            <i class="fas fa-globe"></i>
+        </div>
+        <div class="float-animation" style="position: absolute; bottom: 20%; right: 10%; color: rgba(255,255,255,0.1); font-size: 5rem; animation-delay: 2s;">
+            <i class="fas fa-peace"></i>
+        </div>
+    </section>
+
+    <!-- قسم المحاور الرئيسية -->
+    <section class="section section-light" id="about">
+        <div class="section-title">
+            <h2>محاور عملنا الرئيسية</h2>
+            <p class="section-subtitle">تعمل الأمم المتحدة عبر محاور متعددة لتحقيق رسالتها في السلام والتنمية وحقوق الإنسان للجميع</p>
+        </div>
+        
+        <div class="cards-container">
+            <div class="card fade-in" data-modal="peace-modal">
+                <div class="card-icon">
+                    <i class="fas fa-peace"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">السلام والأمن</h3>
+                    <p class="card-text">نعمل على منع النزاعات وحلها، ونشر عمليات حفظ السلام، ومكافحة الإرهاب، ونزع السلاح، وبناء السلام بعد انتهاء الصراعات.</p>
+                    <div class="card-link">انقر لعرض التفاصيل <i class="fas fa-arrow-left"></i></div>
+                </div>
+            </div>
+            
+            <div class="card fade-in" data-modal="rights-modal">
+                <div class="card-icon">
+                    <i class="fas fa-hands-helping"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">حقوق الإنسان</h3>
+                    <p class="card-text">نحمي وندعم حقوق الإنسان للجميع، نكافح التمييز، ندعم المساواة بين الجنسين، وندعم سيادة القانون والعدالة الدولية.</p>
+                    <div class="card-link">انقر لعرض التفاصيل <i class="fas fa-arrow-left"></i></div>
+                </div>
+            </div>
+            
+            <div class="card fade-in" data-modal="development-modal">
+                <div class="card-icon">
+                    <i class="fas fa-globe-africa"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">التنمية المستدامة</h3>
+                    <p class="card-text">نعمل على القضاء على الفقر، تعزيز الصحة والتعليم، حماية البيئة، دعم النمو الاقتصادي، وتعزيز الشراكات العالمية.</p>
+                    <div class="card-link">انقر لعرض التفاصيل <i class="fas fa-arrow-left"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم أهداف التنمية المستدامة -->
+    <section class="section section-dark" id="goals">
+        <div class="section-title">
+            <h2>أهداف التنمية المستدامة</h2>
+            <p class="section-subtitle">خطة الأمم المتحدة لتحقيق مستقبل أفضل وأكثر استدامة للجميع. تشمل الأهداف السبعة عشر معالجة للتحديات العالمية التي نواجهها</p>
+        </div>
+        
+        <div class="sdg-grid">
+            <div class="sdg-item fade-in" data-goal="1">
+                <div class="sdg-number">1</div>
+                <div class="sdg-title">القضاء على الفقر</div>
+            </div>
+            <div class="sdg-item fade-in" data-goal="2">
+                <div class="sdg-number">2</div>
+                <div class="sdg-title">القضاء على الجوع</div>
+            </div>
+            <div class="sdg-item fade-in" data-goal="3">
+                <div class="sdg-number">3</div>
+                <div class="sdg-title">الصحة الجيدة</div>
+            </div>
+            <div class="sdg-item fade-in" data-goal="4">
+                <div class="sdg-number">4</div>
+                <div class="sdg-title">التعليم الجيد</div>
+            </div>
+            <div class="sdg-item fade-in" data-goal="5">
+                <div class="sdg-number">5</div>
+                <div class="sdg-title">المساواة بين الجنسين</div>
+            </div>
+            <div class="sdg-item fade-in" data-goal="6">
+                <div class="sdg-number">6</div>
+                <div class="sdg-title">المياه النظيفة</div>
+            </div>
+            <div class="sdg-item fade-in" data-goal="7">
+                <div class="sdg-number">7</div>
+                <div class="sdg-title">طاقة نظيفة</div>
+            </div>
+            <div class="sdg-item fade-in" data-goal="8">
+                <div class="sdg-number">8</div>
+                <div class="sdg-title">العمل اللائق</div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 3rem;">
+            <button class="btn btn-primary" id="showAllGoals" style="background: white; color: var(--un-blue); padding: 1rem 2.5rem; font-size: 1.1rem;">عرض جميع الأهداف الـ 17</button>
+        </div>
+    </section>
+
+    <!-- قسم مشاريع الأمم المتحدة في اليمن -->
+    <section class="section" id="yemen">
+        <div class="section-title">
+            <h2>مشاريع الأمم المتحدة في اليمن</h2>
+            <p class="section-subtitle">نعمل في اليمن على تقديم المساعدات الإنسانية والإنمائية لمساعدة الشعب اليمني في مواجهة التحديات الإنسانية والاقتصادية</p>
+        </div>
+        
+        <div class="yemen-projects fade-in">
+            <div class="yemen-header">
+                <h3>استجابة الأمم المتحدة للأزمة الإنسانية في اليمن</h3>
+                <p>منذ عام 2015، قدمت الأمم المتحدة مساعدات إنسانية لأكثر من 13 مليون يمني</p>
+            </div>
+            
+            <div class="yemen-content">
+                <div class="project-card">
+                    <div class="project-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h4 class="project-title">المساعدات الغذائية</h4>
+                    <p>تقديم مساعدات غذائية طارئة لأكثر من 13 مليون شخص يعانون من انعدام الأمن الغذائي في جميع أنحاء اليمن.</p>
+                    <div class="project-stats">
+                        <div class="stat">
+                            <span class="stat-value">13M+</span>
+                            <span class="stat-label">مستفيد</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">$1.2B</span>
+                            <span class="stat-label">تمويل سنوي</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-icon">
+                        <i class="fas fa-hospital"></i>
+                    </div>
+                    <h4 class="project-title">الخدمات الصحية</h4>
+                    <p>دعم أكثر من 350 مرفقاً صحياً في اليمن وتوفير الأدوية والمستلزمات الطبية الأساسية.</p>
+                    <div class="project-stats">
+                        <div class="stat">
+                            <span class="stat-value">350+</span>
+                            <span class="stat-label">مرفق صحي</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">12M</span>
+                            <span class="stat-label">مستفيد</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <h4 class="project-title">المياه والصرف الصحي</h4>
+                    <p>تحسين فرص الحصول على مياه الشرب الآمنة وخدمات الصرف الصحي لأكثر من 6 ملايين شخص.</p>
+                    <div class="project-stats">
+                        <div class="stat">
+                            <span class="stat-value">6M+</span>
+                            <span class="stat-label">مستفيد</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">320</span>
+                            <span class="stat-label">مشروع</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الهيكل التنظيمي -->
+    <section class="section section-light" id="structure">
+        <div class="section-title">
+            <h2>الهيكل التنظيمي</h2>
+            <p class="section-subtitle">تعرف على الأجهزة الرئيسية للأمم المتحدة وآلية عملها لتحقيق أهداف الميثاق</p>
+        </div>
+        
+        <div class="cards-container">
+            <div class="card fade-in" data-modal="assembly-modal">
+                <div class="card-icon" style="background: var(--gradient-secondary);">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">الجمعية العامة</h3>
+                    <p class="card-text">هي جهاز التداول الرئيسي للأمم المتحدة، تضم جميع الدول الأعضاء البالغ عددها 193 دولة. تناقش القضايا المتعلقة بالسلام والأمن الدوليين.</p>
+                    <div class="card-link">انقر لعرض التفاصيل <i class="fas fa-arrow-left"></i></div>
+                </div>
+            </div>
+            
+            <div class="card fade-in" data-modal="security-modal">
+                <div class="card-icon" style="background: linear-gradient(135deg, #E53935 0%, #B71C1C 100%);">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">مجلس الأمن</h3>
+                    <p class="card-text">المسؤول الرئيسي عن حفظ السلام والأمن الدوليين. يتألف من 15 عضواً، منهم 5 دائمين و10 غير دائمين تنتخبهم الجمعية العامة لمدة سنتين.</p>
+                    <div class="card-link">انقر لعرض التفاصيل <i class="fas fa-arrow-left"></i></div>
+                </div>
+            </div>
+            
+            <div class="card fade-in" data-modal="economic-modal">
+                <div class="card-icon" style="background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">المجلس الاقتصادي والاجتماعي</h3>
+                    <p class="card-text">الجهاز الرئيسي لتنسيق العمل الاقتصادي والاجتماعي للأمم المتحدة. يضم 54 عضواً تنتخبهم الجمعية العامة لمدة ثلاث سنوات.</p>
+                    <div class="card-link">انقر لعرض التفاصيل <i class="fas fa-arrow-left"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer class="footer" id="contact">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>الأمم المتحدة</h3>
+                <p>منظمة دولية تأسست عام 1945 لتعزيز السلام والأمن الدوليين، وحماية حقوق الإنسان، وتقديم المساعدات الإنسانية، وتعزيز التنمية المستدامة، ودعم القانون الدولي.</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>روابط سريعة</h3>
+                <ul class="footer-links">
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#about">عن المنظمة</a></li>
+                    <li><a href="#goals">أهداف التنمية</a></li>
+                    <li><a href="#structure">الهيكل التنظيمي</a></li>
+                    <li><a href="#yemen">مشاريع اليمن</a></li>
+                    <li><a href="#contact">اتصل بنا</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>الموارد</h3>
+                <ul class="footer-links">
+                    <li><a href="#">الوثائق الرسمية</a></li>
+                    <li><a href="#">التقارير والإحصاءات</a></li>
+                    <li><a href="#">الوظائف والتوظيف</a></li>
+                    <li><a href="#">الفرص التطوعية</a></li>
+                    <li><a href="#">المشاريع والبرامج</a></li>
+                    <li><a href="#">المركز الإعلامي</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>اتصل بنا</h3>
+                <p><i class="fas fa-map-marker-alt" style="margin-left: 10px;"></i> نيويورك، الولايات المتحدة الأمريكية</p>
+                <p><i class="fas fa-phone" style="margin-left: 10px;"></i> +1 (212) 963-1234</p>
+                <p><i class="fas fa-envelope" style="margin-left: 10px;"></i> inquiries@un.org</p>
+                <p><i class="fas fa-globe" style="margin-left: 10px;"></i> www.un.org</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>© 2023 الأمم المتحدة. جميع الحقوق محفوظة. | تم إنشاء هذا الموقع لأغراض تعليمية.</p>
+            <p>الموقع الرسمي للأمم المتحدة: <a href="https://www.un.org" style="color: var(--un-blue);">www.un.org</a></p>
+        </div>
+    </footer>
+
+    <!-- نافذة منبثقة لأهداف التنمية المستدامة -->
+    <div class="modal-overlay" id="goals-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>أهداف التنمية المستدامة الـ 17</h3>
+                <button class="modal-close" id="closeGoalsModal">×</button>
+            </div>
+            <div class="modal-content">
+                <div class="modal-section">
+                    <h4>خطة عمل الأمم المتحدة للقضاء على الفقر وحماية كوكب الأرض وضمان الرخاء للجميع</h4>
+                    <p>أهداف التنمية المستدامة هي دعوة عالمية للعمل من أجل القضاء على الفقر وحماية كوكب الأرض وضمان تمتع جميع الناس بالسلام والازدهار. هذه الأهداف السبعة عشر متكاملة - أي أنها تدرك أن العمل في مجال واحد سيؤثر على النتائج في مجالات أخرى، وأن التنمية يجب أن توازن بين الاستدامة الاجتماعية والاقتصادية والبيئية.</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>قائمة الأهداف الـ 17</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem;">
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #0065B3;">
+                            <strong>الهدف 1:</strong> القضاء على الفقر بجميع أشكاله في كل مكان
+                        </div>
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #DDA63A;">
+                            <strong>الهدف 2:</strong> القضاء على الجوع وتوفير الأمن الغذائي
+                        </div>
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #4C9F38;">
+                            <strong>الهدف 3:</strong> ضمان تمتع الجميع بأنماط عيش صحية
+                        </div>
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #C5192D;">
+                            <strong>الهدف 4:</strong> ضمان التعليم الجيد المنصف والشامل للجميع
+                        </div>
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #FF3A21;">
+                            <strong>الهدف 5:</strong> تحقيق المساواة بين الجنسين وتمكين جميع النساء والفتيات
+                        </div>
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #26BDE2;">
+                            <strong>الهدف 6:</strong> ضمان توافر المياه وخدمات الصرف الصحي للجميع
+                        </div>
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #FCC30B;">
+                            <strong>الهدف 7:</strong> ضمان حصول الجميع على خدمات الطاقة الحديثة
+                        </div>
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #A21942;">
+                            <strong>الهدف 8:</strong> تعزيز النمو الاقتصادي المطرد والشامل للجميع
+                        </div>
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #FD6925;">
+                            <strong>الهدف 9:</strong> بناء هياكل أساسية قادرة على الصمود
+                        </div>
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #DD1367;">
+                            <strong>الهدف 10:</strong> الحد من انعدام المساواة داخل البلدان وفيما بينها
+                        </div>
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #FD9D24;">
+                            <strong>الهدف 11:</strong> جعل المدن والمستوطنات البشرية شاملة للجميع
+                        </div>
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #BF8B2E;">
+                            <strong>الهدف 12:</strong> ضمان وجود أنماط استهلاك وإنتاج مستدامة
+                        </div>
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #3F7E44;">
+                            <strong>الهدف 13:</strong> اتخاذ إجراءات عاجلة لمكافحة تغير المناخ
+                        </div>
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #0A97D9;">
+                            <strong>الهدف 14:</strong> حفظ المحيطات والبحار والموارد البحرية
+                        </div>
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #56C02B;">
+                            <strong>الهدف 15:</strong> حماية النظم الإيكولوجية البرية ومكافحة التصحر
+                        </div>
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #00689D;">
+                            <strong>الهدف 16:</strong> تعزيز المجتمعات السلمية والشاملة للجميع
+                        </div>
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #19486A;">
+                            <strong>الهدف 17:</strong> تعزيز وسائل التنفيذ وتنشيط الشراكة العالمية
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>الموعد المستهدف</h4>
+                    <p>تلتزم الدول الأعضاء في الأمم المتحدة بتحقيق أهداف التنمية المستدامة بحلول عام 2030. ويتطلب تحقيق هذه الأهداف شراكة عالمية بين الحكومات والقطاع الخاص والمجتمع المدني والأفراد.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة منبثقة للسلام والأمن -->
+    <div class="modal-overlay" id="peace-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>السلام والأمن الدوليين</h3>
+                <button class="modal-close" data-modal="peace-modal">×</button>
+            </div>
+            <div class="modal-content">
+                <div class="modal-section">
+                    <h4>حفظ السلام ومنع النزاعات</h4>
+                    <p>تعمل الأمم المتحدة على منع نشوب النزاعات وحلها، ومساعدة أطراف النزاعات على إحلال السلام، وتهيئة الظروف المؤاتية لتحقيق السلام واستدامته. وتعد عمليات حفظ السلام التابعة للأمم المتحدة أداة مرنة تطورت على مر السنين لمساعدة البلدان التي مزقتها الصراعات على تهيئة الظروف اللازمة لتحقيق سلام دائم.</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>مجالات العمل الرئيسية</h4>
+                    <ul style="line-height: 1.8;">
+                        <li><strong>عمليات حفظ السلام:</strong> نشر قوات حفظ السلام في مناطق النزاع حول العالم.</li>
+                        <li><strong>نزع السلاح:</strong> العمل على الحد من انتشار الأسلحة التقليدية وأسلحة الدمار الشامل.</li>
+                        <li><strong>مكافحة الإرهاب:</strong> تعزيز التعاون الدولي لمكافحة الإرهاب بجميع أشكاله.</li>
+                        <li><strong>بناء السلام:</strong> مساعدة المجتمعات على التعافي بعد انتهاء الصراعات.</li>
+                        <li><strong>الوساطة:</strong> توفير وساطة دولية لحل النزاعات بالوسائل السلمية.</li>
+                    </ul>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>إحصائيات وأرقام</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                        <div style="background: var(--un-blue-light); padding: 1rem; border-radius: 10px; text-align: center;">
+                            <div style="font-size: 2rem; font-weight: bold; color: var(--un-blue);">12</div>
+                            <div>بعثة حفظ سلام نشطة</div>
+                        </div>
+                        <div style="background: var(--un-blue-light); padding: 1rem; border-radius: 10px; text-align: center;">
+                            <div style="font-size: 2rem; font-weight: bold; color: var(--un-blue);">89,000</div>
+                            <div>عسكري وشرطي وعامل مدني</div>
+                        </div>
+                        <div style="background: var(--un-blue-light); padding: 1rem; border-radius: 10px; text-align: center;">
+                            <div style="font-size: 2rem; font-weight: bold; color: var(--un-blue);">121</div>
+                            <div>دولة تساهم بقوات حفظ السلام</div>
+                        </div>
+                        <div style="background: var(--un-blue-light); padding: 1rem; border-radius: 10px; text-align: center;">
+                            <div style="font-size: 2rem; font-weight: bold; color: var(--un-blue);">71</div>
+                            <div>عملية حفظ سلام منذ 1948</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة منبثقة لحقوق الإنسان -->
+    <div class="modal-overlay" id="rights-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>حقوق الإنسان</h3>
+                <button class="modal-close" data-modal="rights-modal">×</button>
+            </div>
+            <div class="modal-content">
+                <div class="modal-section">
+                    <h4>حماية وتعزيز حقوق الإنسان</h4>
+                    <p>تعمل الأمم المتحدة على حماية وتعزيز حقوق الإنسان للجميع دون تمييز. وتسترشد في عملها بالإعلان العالمي لحقوق الإنسان والمعاهدات الدولية الأخرى لحقوق الإنسان. وتسعى المنظمة إلى دمج حقوق الإنسان في جميع برامجها وأنشطتها.</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>المجالات الرئيسية</h4>
+                    <ul style="line-height: 1.8;">
+                        <li><strong>الحقوق المدنية والسياسية:</strong> الحق في الحياة، حرية التعبير، حرية الدين، الحق في محاكمة عادلة.</li>
+                        <li><strong>الحقوق الاقتصادية والاجتماعية والثقافية:</strong> الحق في العمل، الحق في التعليم، الحق في الصحة، الحق في السكن اللائق.</li>
+                        <li><strong>حقوق الفئات المستضعفة:</strong> حقوق المرأة، حقوق الطفل، حقوق الأشخاص ذوي الإعاقة، حقوق اللاجئين.</li>
+                        <li><strong>مكافحة التمييز:</strong> مكافحة التمييز على أساس العرق، الجنس، الدين، أو أي وضع آخر.</li>
+                        <li><strong>العدالة وسيادة القانون:</strong> دعم أنظمة العدالة وتعزيز سيادة القانون على المستوى الوطني والدولي.</li>
+                    </ul>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>آليات حقوق الإنسان</h4>
+                    <p>تعتمد الأمم المتحدة على عدة آليات لمراقبة وتعزيز حقوق الإنسان:</p>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #4CAF50;">
+                            <strong>مجلس حقوق الإنسان:</strong> هيئة حكومية دولية مسؤولة عن تعزيز وحماية حقوق الإنسان حول العالم.
+                        </div>
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #2196F3;">
+                            <strong>المفوضية السامية لحقوق الإنسان:</strong> المسؤولة عن أنشطة الأمم المتحدة في مجال حقوق الإنسان.
+                        </div>
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #FF9800;">
+                            <strong>لجان المعاهدات:</strong> هيئات الخبراء المستقلة التي ترصد تنفيذ المعاهدات الدولية الأساسية لحقوق الإنسان.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة منبثقة للتنمية المستدامة -->
+    <div class="modal-overlay" id="development-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>التنمية المستدامة</h3>
+                <button class="modal-close" data-modal="development-modal">×</button>
+            </div>
+            <div class="modal-content">
+                <div class="modal-section">
+                    <h4>تعزيز التنمية المستدامة عالمياً</h4>
+                    <p>تعمل الأمم المتحدة على تعزيز التنمية المستدامة التي تلبي احتياجات الحاضر دون المساس بقدرة الأجيال المقبلة على تلبية احتياجاتها الخاصة. وتشمل التنمية المستدامة ثلاثة أبعاد مترابطة: التنمية الاقتصادية، والتنمية الاجتماعية، وحماية البيئة.</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>مجالات التركيز</h4>
+                    <ul style="line-height: 1.8;">
+                        <li><strong>القضاء على الفقر:</strong> خفض نسبة الأشخاص الذين يعيشون تحت خط الفقر إلى النصف بحلول عام 2030.</li>
+                        <li><strong>الصحة الجيدة والرفاه:</strong> ضمان حياة صحية وتعزيز الرفاه للجميع في جميع الأعمار.</li>
+                        <li><strong>التعليم الجيد:</strong> ضمان التعليم الجيد المنصف والشامل وتعزيز فرص التعلم مدى الحياة للجميع.</li>
+                        <li><strong>المساواة بين الجنسين:</strong> تحقيق المساواة بين الجنسين وتمكين جميع النساء والفتيات.</li>
+                        <li><strong>العمل المناخي:</strong> اتخاذ إجراءات عاجلة لمكافحة تغير المناخ وآثاره.</li>
+                        <li><strong>الطاقة النظيفة:</strong> ضمان حصول الجميع على خدمات الطاقة الحديثة الموثوقة والمستدامة.</li>
+                    </ul>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>إنجازات التنمية المستدامة</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                        <div style="background: var(--un-blue-light); padding: 1rem; border-radius: 10px; text-align: center;">
+                            <div style="font-size: 2rem; font-weight: bold; color: var(--un-blue);">1B+</div>
+                            <div>شخص تم انتشالهم من الفقر المدقع منذ 1990</div>
+                        </div>
+                        <div style="background: var(--un-blue-light); padding: 1rem; border-radius: 10px; text-align: center;">
+                            <div style="font-size: 2rem; font-weight: bold; color: var(--un-blue);">91%</div>
+                            <div>من سكان العالم يحصلون على مياه شرب محسنة</div>
+                        </div>
+                        <div style="background: var(--un-blue-light); padding: 1rem; border-radius: 10px; text-align: center;">
+                            <div style="font-size: 2rem; font-weight: bold; color: var(--un-blue);">2.6B</div>
+                            <div>شخص حصلوا على خدمات صرف صحي محسنة</div>
+                        </div>
+                        <div style="background: var(--un-blue-light); padding: 1rem; border-radius: 10px; text-align: center;">
+                            <div style="font-size: 2rem; font-weight: bold; color: var(--un-blue);">90%</div>
+                            <div>من الأطفال في المناطق النامية يلتحقون بالمدارس</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // تأثيرات التمرير
+        window.addEventListener('scroll', function() {
+            // تأثير شريط التنقل
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            
+            // تأثير الظهور التدريجي للعناصر
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('visible');
+                }
+            });
+            
+            // تأثير العد للأرقام في الإحصائيات
+            const countElements = document.querySelectorAll('.animate-count');
+            countElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100 && !element.classList.contains('animated')) {
+                    animateCount(element);
+                    element.classList.add('animated');
+                }
+            });
+        });
+        
+        // دالة العد التصاعدي للأرقام
+        function animateCount(element) {
+            const target = parseInt(element.getAttribute('data-target'));
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
+            
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 16);
+        }
+        
+        // إدارة النوافذ المنبثقة
+        document.addEventListener('DOMContentLoaded', function() {
+            // القائمة المتنقلة للهواتف
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navLinks = document.getElementById('navLinks');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            });
+            
+            // إغلاق القائمة عند النقر على رابط
+            const navItems = document.querySelectorAll('.nav-links a');
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    if (window.innerWidth <= 1100) {
+                        navLinks.style.display = 'none';
+                    }
+                });
+            });
+            
+            // إظهار النوافذ المنبثقة عند النقر على البطاقات
+            const cards = document.querySelectorAll('.card[data-modal]');
+            cards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const modalId = this.getAttribute('data-modal');
+                    const modal = document.getElementById(modalId);
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+            
+            // إظهار نافذة أهداف التنمية المستدامة
+            const showAllGoalsBtn = document.getElementById('showAllGoals');
+            const goalsModal = document.getElementById('goals-modal');
+            const closeGoalsModal = document.getElementById('closeGoalsModal');
+            
+            showAllGoalsBtn.addEventListener('click', function() {
+                goalsModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            closeGoalsModal.addEventListener('click', function() {
+                goalsModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+            
+            // إغلاق النوافذ المنبثقة
+            const closeButtons = document.querySelectorAll('.modal-close');
+            closeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const modalId = this.getAttribute('data-modal') || 'goals-modal';
+                    const modal = document.getElementById(modalId);
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
+            });
+            
+            // إغلاق النوافذ بالنقر خارجها
+            const modals = document.querySelectorAll('.modal-overlay');
+            modals.forEach(modal => {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        this.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            });
+            
+            // تأثير النقر على أهداف التنمية المستدامة
+            const sdgItems = document.querySelectorAll('.sdg-item');
+            sdgItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const goal = this.getAttribute('data-goal');
+                    
+                    // إظهار النافذة المنبثقة لأهداف التنمية
+                    goalsModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                    
+                    // تمرير إلى القسم المناسب في النافذة
+                    setTimeout(() => {
+                        const modalContent = document.querySelector('.modal-content');
+                        modalContent.scrollTop = 0;
+                    }, 100);
+                });
+            });
+            
+            // التمرير السلس عند النقر على روابط التنقل
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // إظهار العناصر المرئية عند التحميل
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('visible');
+                }
+            });
+            
+            // بدء تأثير العد للأرقام في الإحصائيات
+            setTimeout(() => {
+                const countElements = document.querySelectorAll('.animate-count');
+                countElements.forEach(element => {
+                    if (element.getBoundingClientRect().top < window.innerHeight - 100) {
+                        animateCount(element);
+                        element.classList.add('animated');
+                    }
+                });
+            }, 500);
+            
+            // تغيير لون الأيقونة في القائمة المتنقلة
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 1100) {
+                    navLinks.style.display = 'flex';
+                } else {
+                    navLinks.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
