@@ -241,10 +241,23 @@
             display: flex;
             gap: 3rem;
             margin-top: 3rem;
+            flex-wrap: wrap;
         }
         
         .stat-item {
             text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            min-width: 180px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: var(--transition-smooth);
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.2);
         }
         
         .stat-number {
@@ -257,6 +270,13 @@
         .stat-label {
             font-size: 1.1rem;
             opacity: 0.9;
+        }
+        
+        .stat-description {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 0.5rem;
+            line-height: 1.4;
         }
         
         /* تصميم البطاقات */
@@ -728,6 +748,105 @@
             border-bottom: 2px solid var(--un-blue-light);
         }
         
+        /* تصميم واجهة تسجيل الدخول */
+        .login-form, .donation-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #444;
+            font-weight: 600;
+        }
+        
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-family: 'Noto Sans Arabic', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition-smooth);
+        }
+        
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--un-blue);
+            box-shadow: 0 0 0 3px rgba(0, 101, 179, 0.1);
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .payment-methods {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .payment-method {
+            flex: 1;
+            text-align: center;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+        
+        .payment-method:hover, .payment-method.active {
+            border-color: var(--un-blue);
+            background-color: var(--un-blue-light);
+        }
+        
+        .payment-method i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--un-blue);
+        }
+        
+        .donation-amounts {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .donation-amount {
+            padding: 1rem 1.5rem;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            text-align: center;
+            flex: 1;
+            min-width: 100px;
+        }
+        
+        .donation-amount:hover, .donation-amount.active {
+            border-color: var(--un-blue);
+            background-color: var(--un-blue-light);
+            color: var(--un-blue);
+            font-weight: 600;
+        }
+        
+        .form-footer {
+            margin-top: 2rem;
+            text-align: center;
+        }
+        
         /* تصميم متجاوب */
         @media (max-width: 1100px) {
             .nav-links {
@@ -745,6 +864,10 @@
             .hero-stats {
                 flex-wrap: wrap;
                 gap: 2rem;
+            }
+            
+            .stat-item {
+                min-width: 160px;
             }
         }
         
@@ -781,6 +904,23 @@
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .payment-methods {
+                flex-direction: column;
+            }
+            
+            .donation-amounts {
+                justify-content: center;
+            }
+            
+            .donation-amount {
+                min-width: 80px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -794,6 +934,11 @@
             
             .sdg-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .stat-item {
+                min-width: 140px;
+                padding: 1rem;
             }
         }
     </style>
@@ -826,8 +971,8 @@
             </ul>
             
             <div class="nav-actions">
-                <button class="btn btn-outline">تسجيل الدخول</button>
-                <button class="btn btn-primary">التبرع الآن</button>
+                <button class="btn btn-outline" id="loginBtn">تسجيل الدخول</button>
+                <button class="btn btn-primary" id="donateBtn">التبرع الآن</button>
             </div>
         </div>
     </nav>
@@ -843,26 +988,29 @@
                 الأمم المتحدة هي منظمة دولية تأسست عام 1945. تضم حالياً 193 دولة عضو. تكرس الأمم المتحدة جهودها للحفاظ على السلام والأمن الدوليين، وحماية حقوق الإنسان، وتقديم المساعدات الإنسانية، وتعزيز التنمية المستدامة، ودعم القانون الدولي.
             </p>
             <div class="hero-actions">
-                <button class="btn btn-primary" style="padding: 1rem 2.5rem; font-size: 1.1rem;">استكشف أعمالنا</button>
-                <button class="btn btn-outline" style="padding: 1rem 2.5rem; font-size: 1.1rem; margin-right: 1rem; color: white; border-color: white;">شاهد الفيديو</button>
+                <button class="btn btn-primary" id="exploreBtn" style="padding: 1rem 2.5rem; font-size: 1.1rem;">استكشف أعمالنا</button>
             </div>
             
             <div class="hero-stats">
                 <div class="stat-item fade-in">
                     <span class="stat-number animate-count" data-target="193">0</span>
                     <span class="stat-label">دولة عضو</span>
+                    <div class="stat-description">عدد الدول الأعضاء في الأمم المتحدة من جميع أنحاء العالم</div>
                 </div>
                 <div class="stat-item fade-in">
                     <span class="stat-number animate-count" data-target="75">0</span>
                     <span class="stat-label">عاماً من الخدمة</span>
+                    <div class="stat-description">من العمل من أجل السلام والتنمية العالمية منذ تأسيسها عام 1945</div>
                 </div>
                 <div class="stat-item fade-in">
                     <span class="stat-number animate-count" data-target="17">0</span>
                     <span class="stat-label">هدف تنمية مستدام</span>
+                    <div class="stat-description">أهداف الأمم المتحدة للقضاء على الفقر وحماية كوكب الأرض بحلول 2030</div>
                 </div>
                 <div class="stat-item fade-in">
                     <span class="stat-number animate-count" data-target="12">0</span>
                     <span class="stat-label">بعثة حفظ سلام</span>
+                    <div class="stat-description">بعثة أممية نشطة تعمل في مناطق النزاع حول العالم لحفظ السلام</div>
                 </div>
             </div>
         </div>
@@ -966,6 +1114,49 @@
         </div>
     </section>
 
+    <!-- قسم الهيكل التنظيمي -->
+    <section class="section section-light" id="structure">
+        <div class="section-title">
+            <h2>الهيكل التنظيمي</h2>
+            <p class="section-subtitle">تعرف على الأجهزة الرئيسية للأمم المتحدة وآلية عملها لتحقيق أهداف الميثاق</p>
+        </div>
+        
+        <div class="cards-container">
+            <div class="card fade-in" data-modal="assembly-modal">
+                <div class="card-icon" style="background: var(--gradient-secondary);">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">الجمعية العامة</h3>
+                    <p class="card-text">هي جهاز التداول الرئيسي للأمم المتحدة، تضم جميع الدول الأعضاء البالغ عددها 193 دولة. تناقش القضايا المتعلقة بالسلام والأمن الدوليين.</p>
+                    <div class="card-link">انقر لعرض التفاصيل <i class="fas fa-arrow-left"></i></div>
+                </div>
+            </div>
+            
+            <div class="card fade-in" data-modal="security-modal">
+                <div class="card-icon" style="background: linear-gradient(135deg, #E53935 0%, #B71C1C 100%);">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">مجلس الأمن</h3>
+                    <p class="card-text">المسؤول الرئيسي عن حفظ السلام والأمن الدوليين. يتألف من 15 عضواً، منهم 5 دائمين و10 غير دائمين تنتخبهم الجمعية العامة لمدة سنتين.</p>
+                    <div class="card-link">انقر لعرض التفاصيل <i class="fas fa-arrow-left"></i></div>
+                </div>
+            </div>
+            
+            <div class="card fade-in" data-modal="economic-modal">
+                <div class="card-icon" style="background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">المجلس الاقتصادي والاجتماعي</h3>
+                    <p class="card-text">الجهاز الرئيسي لتنسيق العمل الاقتصادي والاجتماعي للأمم المتحدة. يضم 54 عضواً تنتخبهم الجمعية العامة لمدة ثلاث سنوات.</p>
+                    <div class="card-link">انقر لعرض التفاصيل <i class="fas fa-arrow-left"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- قسم مشاريع الأمم المتحدة في اليمن -->
     <section class="section" id="yemen">
         <div class="section-title">
@@ -1037,49 +1228,6 @@
         </div>
     </section>
 
-    <!-- قسم الهيكل التنظيمي -->
-    <section class="section section-light" id="structure">
-        <div class="section-title">
-            <h2>الهيكل التنظيمي</h2>
-            <p class="section-subtitle">تعرف على الأجهزة الرئيسية للأمم المتحدة وآلية عملها لتحقيق أهداف الميثاق</p>
-        </div>
-        
-        <div class="cards-container">
-            <div class="card fade-in" data-modal="assembly-modal">
-                <div class="card-icon" style="background: var(--gradient-secondary);">
-                    <i class="fas fa-users"></i>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">الجمعية العامة</h3>
-                    <p class="card-text">هي جهاز التداول الرئيسي للأمم المتحدة، تضم جميع الدول الأعضاء البالغ عددها 193 دولة. تناقش القضايا المتعلقة بالسلام والأمن الدوليين.</p>
-                    <div class="card-link">انقر لعرض التفاصيل <i class="fas fa-arrow-left"></i></div>
-                </div>
-            </div>
-            
-            <div class="card fade-in" data-modal="security-modal">
-                <div class="card-icon" style="background: linear-gradient(135deg, #E53935 0%, #B71C1C 100%);">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">مجلس الأمن</h3>
-                    <p class="card-text">المسؤول الرئيسي عن حفظ السلام والأمن الدوليين. يتألف من 15 عضواً، منهم 5 دائمين و10 غير دائمين تنتخبهم الجمعية العامة لمدة سنتين.</p>
-                    <div class="card-link">انقر لعرض التفاصيل <i class="fas fa-arrow-left"></i></div>
-                </div>
-            </div>
-            
-            <div class="card fade-in" data-modal="economic-modal">
-                <div class="card-icon" style="background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">المجلس الاقتصادي والاجتماعي</h3>
-                    <p class="card-text">الجهاز الرئيسي لتنسيق العمل الاقتصادي والاجتماعي للأمم المتحدة. يضم 54 عضواً تنتخبهم الجمعية العامة لمدة ثلاث سنوات.</p>
-                    <div class="card-link">انقر لعرض التفاصيل <i class="fas fa-arrow-left"></i></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- الفوتر -->
     <footer class="footer" id="contact">
         <div class="footer-content">
@@ -1121,18 +1269,180 @@
             
             <div class="footer-column">
                 <h3>اتصل بنا</h3>
-                <p><i class="fas fa-map-marker-alt" style="margin-left: 10px;"></i> نيويورك، الولايات المتحدة الأمريكية</p>
-                <p><i class="fas fa-phone" style="margin-left: 10px;"></i> +1 (212) 963-1234</p>
-                <p><i class="fas fa-envelope" style="margin-left: 10px;"></i> inquiries@un.org</p>
-                <p><i class="fas fa-globe" style="margin-left: 10px;"></i> www.un.org</p>
+                <p><i class="fas fa-map-marker-alt" style="margin-left: 10px;"></i> صنعاء، اليمن</p>
+                <p><i class="fas fa-phone" style="margin-left: 10px;"></i> +967 777 777 777</p>
+                <p><i class="fas fa-envelope" style="margin-left: 10px;"></i> yemen@un.org</p>
+                <p><i class="fas fa-globe" style="margin-left: 10px;"></i> un-yemen.org</p>
             </div>
         </div>
         
         <div class="footer-bottom">
-            <p>© 2023 الأمم المتحدة. جميع الحقوق محفوظة. | تم إنشاء هذا الموقع لأغراض تعليمية.</p>
-            <p>الموقع الرسمي للأمم المتحدة: <a href="https://www.un.org" style="color: var(--un-blue);">www.un.org</a></p>
+            <p>© 2023 الأمم المتحدة - مكتب اليمن. جميع الحقوق محفوظة.</p>
         </div>
     </footer>
+
+    <!-- نافذة تسجيل الدخول -->
+    <div class="modal-overlay" id="login-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>تسجيل الدخول</h3>
+                <button class="modal-close" data-modal="login-modal">×</button>
+            </div>
+            <div class="modal-content">
+                <div class="login-form">
+                    <div class="form-group">
+                        <label for="login-email">البريد الإلكتروني</label>
+                        <input type="email" id="login-email" placeholder="example@un.org">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="login-password">كلمة المرور</label>
+                        <input type="password" id="login-password" placeholder="أدخل كلمة المرور">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="checkbox" id="remember-me">
+                            <label for="remember-me" style="display: inline; margin-right: 5px;">تذكرني</label>
+                        </div>
+                        <div class="form-group" style="text-align: left;">
+                            <a href="#" style="color: var(--un-blue); text-decoration: none;">نسيت كلمة المرور؟</a>
+                        </div>
+                    </div>
+                    
+                    <div class="form-footer">
+                        <button class="btn btn-primary" style="width: 100%; padding: 1rem; font-size: 1.1rem;">تسجيل الدخول</button>
+                        
+                        <div style="margin-top: 1.5rem; text-align: center;">
+                            <p style="color: #666;">ليس لديك حساب؟ <a href="#" style="color: var(--un-blue); font-weight: 600;">سجل الآن</a></p>
+                        </div>
+                        
+                        <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #eee;">
+                            <p style="color: #666; text-align: center;">يمكنك تسجيل الدخول أيضاً باستخدام:</p>
+                            <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1rem;">
+                                <button class="btn btn-outline" style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <i class="fab fa-google" style="color: #DB4437;"></i>
+                                    Google
+                                </button>
+                                <button class="btn btn-outline" style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <i class="fab fa-microsoft" style="color: #00A4EF;"></i>
+                                    Microsoft
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة التبرع -->
+    <div class="modal-overlay" id="donation-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>التبرع لدعم أعمال الأمم المتحدة</h3>
+                <button class="modal-close" data-modal="donation-modal">×</button>
+            </div>
+            <div class="modal-content">
+                <div class="donation-form">
+                    <div class="form-group">
+                        <label for="donation-amount">مبلغ التبرع (دولار أمريكي)</label>
+                        <div class="donation-amounts">
+                            <div class="donation-amount" data-amount="10">$10</div>
+                            <div class="donation-amount" data-amount="25">$25</div>
+                            <div class="donation-amount" data-amount="50">$50</div>
+                            <div class="donation-amount" data-amount="100">$100</div>
+                            <div class="donation-amount" data-amount="250">$250</div>
+                            <div class="donation-amount" data-amount="500">$500</div>
+                        </div>
+                        <input type="number" id="donation-amount" placeholder="أو أدخل المبلغ المطلوب" style="margin-top: 1rem;">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>جهة التبرع</label>
+                        <select id="donation-purpose">
+                            <option value="">اختر جهة التبرع</option>
+                            <option value="yemen">مشاريع اليمن الإنسانية</option>
+                            <option value="education">برامج التعليم حول العالم</option>
+                            <option value="health">برامج الصحة والرعاية الطبية</option>
+                            <option value="peace">عمليات حفظ السلام</option>
+                            <option value="refugees">دعم اللاجئين والنازحين</option>
+                            <option value="general">الدعم العام للأمم المتحدة</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>طريقة الدفع</label>
+                        <div class="payment-methods">
+                            <div class="payment-method" data-method="credit">
+                                <i class="fas fa-credit-card"></i>
+                                <div>بطاقة ائتمان</div>
+                            </div>
+                            <div class="payment-method" data-method="paypal">
+                                <i class="fab fa-paypal"></i>
+                                <div>PayPal</div>
+                            </div>
+                            <div class="payment-method" data-method="bank">
+                                <i class="fas fa-university"></i>
+                                <div>تحويل بنكي</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="credit-card-details" style="display: none;">
+                        <div class="form-group">
+                            <label for="card-number">رقم البطاقة</label>
+                            <input type="text" id="card-number" placeholder="1234 5678 9012 3456">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="card-expiry">تاريخ الانتهاء</label>
+                                <input type="text" id="card-expiry" placeholder="MM/YY">
+                            </div>
+                            <div class="form-group">
+                                <label for="card-cvc">رمز الأمان (CVC)</label>
+                                <input type="text" id="card-cvc" placeholder="123">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="card-name">اسم حامل البطاقة</label>
+                            <input type="text" id="card-name" placeholder="الاسم كما هو مدون على البطاقة">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="donor-name">الاسم الكامل</label>
+                        <input type="text" id="donor-name" placeholder="أدخل اسمك الكامل">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="donor-email">البريد الإلكتروني</label>
+                        <input type="email" id="donor-email" placeholder="example@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="donor-message">رسالة التبرع (اختياري)</label>
+                        <textarea id="donor-message" rows="3" placeholder="أضف رسالة لدعم جهود الأمم المتحدة..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="checkbox" id="donation-receipt">
+                        <label for="donation-receipt" style="display: inline; margin-right: 5px;">أرغب في الحصول على إيصال تبرع</label>
+                    </div>
+                    
+                    <div class="form-footer">
+                        <button class="btn btn-primary" id="submit-donation" style="width: 100%; padding: 1rem; font-size: 1.1rem;">التبرع الآن</button>
+                        
+                        <div style="margin-top: 1.5rem; text-align: center;">
+                            <p style="color: #666; font-size: 0.9rem;">تبرعاتكم تساعدنا على الاستمرار في تقديم المساعدات الإنسانية والإنمائية حول العالم.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- نافذة منبثقة لأهداف التنمية المستدامة -->
     <div class="modal-overlay" id="goals-modal">
@@ -1354,6 +1664,170 @@
         </div>
     </div>
 
+    <!-- نافذة منبثقة للجمعية العامة -->
+    <div class="modal-overlay" id="assembly-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>الجمعية العامة للأمم المتحدة</h3>
+                <button class="modal-close" data-modal="assembly-modal">×</button>
+            </div>
+            <div class="modal-content">
+                <div class="modal-section">
+                    <h4>الجهاز الرئيسي للتداول في الأمم المتحدة</h4>
+                    <p>الجمعية العامة هي الجهاز الرئيسي للتداول وصنع السياسات والتمثيل في الأمم المتحدة. وتضم جميع الدول الأعضاء البالغ عددها 193 دولة، ولكل دولة صوت واحد. وتجتمع الجمعية العامة في دورات عادية سنوية تبدأ في سبتمبر من كل عام.</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>الوظائف والصلاحيات</h4>
+                    <ul style="line-height: 1.8;">
+                        <li><strong>مناقشة جميع المسائل:</strong> يمكن للجمعية العامة مناقشة أي مسألة تدخل في نطاق ميثاق الأمم المتحدة.</li>
+                        <li><strong>تقديم التوصيات:</strong> يمكنها تقديم توصيات إلى الدول الأعضاء أو مجلس الأمن بشأن هذه المسائل.</li>
+                        <li><strong>اعتماد الميزانية:</strong> تدرس وتوافق على ميزانية الأمم المتحدة وتحدد الأنصبة المالية للأعضاء.</li>
+                        <li><strong>انتخاب الأعضاء:</strong> تنتخب الأعضاء غير الدائمين في مجلس الأمن وأعضاء المجلس الاقتصادي والاجتماعي.</li>
+                        <li><strong>تعيين الأمين العام:</strong> بناء على توصية مجلس الأمن، تنتخب الجمعية العامة الأمين العام للأمم المتحدة.</li>
+                    </ul>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>لجان الجمعية العامة</h4>
+                    <p>تنقسم الجمعية العامة إلى ست لجان رئيسية:</p>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #4CAF50;">
+                            <strong>اللجنة الأولى:</strong> نزع السلاح والأمن الدولي
+                        </div>
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #2196F3;">
+                            <strong>اللجنة الثانية:</strong> المسائل الاقتصادية والمالية
+                        </div>
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #FF9800;">
+                            <strong>اللجنة الثالثة:</strong> المسائل الاجتماعية والإنسانية والثقافية
+                        </div>
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #9C27B0;">
+                            <strong>اللجنة الرابعة:</strong> المسائل السياسية الخاصة وإنهاء الاستعمار
+                        </div>
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #3F51B5;">
+                            <strong>اللجنة الخامسة:</strong> المسائل الإدارية والمالية
+                        </div>
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #009688;">
+                            <strong>اللجنة السادسة:</strong> المسائل القانونية
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة منبثقة لمجلس الأمن -->
+    <div class="modal-overlay" id="security-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>مجلس الأمن التابع للأمم المتحدة</h3>
+                <button class="modal-close" data-modal="security-modal">×</button>
+            </div>
+            <div class="modal-content">
+                <div class="modal-section">
+                    <h4>المسؤول الرئيسي عن حفظ السلام والأمن الدوليين</h4>
+                    <p>مجلس الأمن هو الجهاز المسؤول عن حفظ السلام والأمن الدوليين وفقاً لميثاق الأمم المتحدة. ويتخذ المجلس قرارات ملزمة للدول الأعضاء، وله سلطة فرض عقوبات وصولاً إلى تفويض استخدام القوة للحفاظ على السلام والأمن الدوليين أو استعادتهما.</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>التكوين والعضوية</h4>
+                    <ul style="line-height: 1.8;">
+                        <li><strong>الأعضاء الدائمون (5 دول):</strong> الصين، فرنسا، روسيا، المملكة المتحدة، الولايات المتحدة. لكل منها حق النقض (الفيتو).</li>
+                        <li><strong>الأعضاء غير الدائمين (10 دول):</strong> تنتخبهم الجمعية العامة لمدة سنتين، مع مراعاة التوزيع الجغرافي العادل.</li>
+                        <li><strong>الرئاسة:</strong> تتبادل الدول الأعضاء رئاسة المجلس شهرياً حسب الترتيب الأبجدي الإنجليزي لأسمائها.</li>
+                        <li><strong>التصويت:</strong> تحتاج القرارات بشأن المسائل الموضوعية إلى تأييد 9 أصوات من أصل 15، بما في ذلك أصوات جميع الأعضاء الدائمين (ما لم يمتنعوا).</li>
+                    </ul>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>الصلاحيات والوظائف</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #E53935;">
+                            <strong>حفظ السلام:</strong> نشر بعثات حفظ السلام في مناطق النزاع
+                        </div>
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #E53935;">
+                            <strong>فرض العقوبات:</strong> فرض عقوبات اقتصادية ودبلوماسية على الدول
+                        </div>
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #E53935;">
+                            <strong>تفويض استخدام القوة:</strong> التفويض باستخدام القوة لحفظ السلام
+                        </div>
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #E53935;">
+                            <strong>إنشاء المحاكم الدولية:</strong> إنشاء محاكم دولية لمحاكمة مجرمي الحرب
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>عمليات حفظ السلام الحالية</h4>
+                    <p>يدير مجلس الأمن حالياً 12 بعثة حفظ سلام في مناطق مختلفة من العالم، منها:</p>
+                    <ul style="line-height: 1.8;">
+                        <li><strong>بعثة الأمم المتحدة في جنوب السودان (UNMISS)</strong> - منذ 2011</li>
+                        <li><strong>بعثة الأمم المتحدة في جمهورية الكونغو الديمقراطية (MONUSCO)</strong> - منذ 1999</li>
+                        <li><strong>بعثة الأمم المتحدة في لبنان (UNIFIL)</strong> - منذ 1978</li>
+                        <li><strong>بعثة الأمم المتحدة في مالي (MINUSMA)</strong> - منذ 2013</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة منبثقة للمجلس الاقتصادي والاجتماعي -->
+    <div class="modal-overlay" id="economic-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>المجلس الاقتصادي والاجتماعي للأمم المتحدة</h3>
+                <button class="modal-close" data-modal="economic-modal">×</button>
+            </div>
+            <div class="modal-content">
+                <div class="modal-section">
+                    <h4>الجهاز الرئيسي لتنسيق العمل الاقتصادي والاجتماعي</h4>
+                    <p>المجلس الاقتصادي والاجتماعي هو الجهاز الرئيسي لتنسيق العمل الاقتصادي والاجتماعي للأمم المتحدة والوكالات المتخصصة والمؤسسات التابعة لها. ويشرف المجلس على أكثر من 70% من الموارد البشرية والمالية لمنظومة الأمم المتحدة.</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>التكوين والعضوية</h4>
+                    <ul style="line-height: 1.8;">
+                        <li><strong>عدد الأعضاء:</strong> 54 عضواً تنتخبهم الجمعية العامة لمدة ثلاث سنوات.</li>
+                        <li><strong>التوزيع الجغرافي:</strong> 14 مقعداً لأفريقيا، 11 مقعداً لآسيا، 6 مقاعد لأوروبا الشرقية، 10 مقاعد لأمريكا اللاتينية ومنطقة البحر الكاريبي، 13 مقعداً لأوروبا الغربية ودول أخرى.</li>
+                        <li><strong>الرئاسة:</strong> تنتخب الجمعية العامة رئيساً للمجلس كل عام.</li>
+                        <li><strong>الجلسات:</strong> يعقد المجلس دورة رئيسية كل عام في يوليو، تعقد في نيويورك وجنيف بالتناوب.</li>
+                    </ul>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>اللجان والهيئات التابعة</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #FF9800;">
+                            <strong>اللجان الفنية:</strong> 9 لجان فنية تعالج قضايا مثل حقوق الإنسان والمرأة والتنمية الاجتماعية
+                        </div>
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #FF9800;">
+                            <strong>اللجان الإقليمية:</strong> 5 لجان إقليمية تغطي أفريقيا وأوروبا وآسيا والمحيط الهادئ وأمريكا اللاتينية وغرب آسيا
+                        </div>
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #FF9800;">
+                            <strong>الهيئات المتخصصة:</strong> تنسيق مع منظمة الصحة العالمية، اليونسكو، منظمة العمل الدولية، وغيرها
+                        </div>
+                        <div style="background: #f8fafc; padding: 1rem; border-radius: 10px; border-right: 5px solid #FF9800;">
+                            <strong>اللجان الدائمة:</strong> لجان للبرامج والتنسيق، والمنظمات غير الحكومية، والمؤتمرات
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>المجالات الرئيسية للعمل</h4>
+                    <ul style="line-height: 1.8;">
+                        <li><strong>التنمية المستدامة:</strong> تنسيق تنفيذ أهداف التنمية المستدامة الـ 17</li>
+                        <li><strong>حقوق الإنسان:</strong> دعم وتعزيز حقوق الإنسان على مستوى العالم</li>
+                        <li><strong>المساواة بين الجنسين:</strong> تمكين المرأة والمساواة بين الجنسين</li>
+                        <li><strong>التنمية الاجتماعية:</strong> مكافحة الفقر وتعزيز التنمية الاجتماعية</li>
+                        <li><strong>الصحة العالمية:</strong> تنسيق الجهود العالمية في مجال الصحة</li>
+                        <li><strong>التعليم:</strong> ضمان التعليم الجيد للجميع</li>
+                        <li><strong>حماية البيئة:</strong> معالجة التحديات البيئية العالمية</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // تأثيرات التمرير
         window.addEventListener('scroll', function() {
@@ -1425,6 +1899,30 @@
                         navLinks.style.display = 'none';
                     }
                 });
+            });
+            
+            // زر تسجيل الدخول
+            const loginBtn = document.getElementById('loginBtn');
+            const loginModal = document.getElementById('login-modal');
+            
+            loginBtn.addEventListener('click', function() {
+                loginModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            // زر التبرع
+            const donateBtn = document.getElementById('donateBtn');
+            const donationModal = document.getElementById('donation-modal');
+            
+            donateBtn.addEventListener('click', function() {
+                donationModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            // زر استكشف أعمالنا
+            const exploreBtn = document.getElementById('exploreBtn');
+            exploreBtn.addEventListener('click', function() {
+                document.querySelector('#about').scrollIntoView({ behavior: 'smooth' });
             });
             
             // إظهار النوافذ المنبثقة عند النقر على البطاقات
@@ -1540,6 +2038,129 @@
                 } else {
                     navLinks.style.display = 'none';
                 }
+            });
+            
+            // تفعيل واجهة التبرع
+            const donationAmounts = document.querySelectorAll('.donation-amount');
+            donationAmounts.forEach(amount => {
+                amount.addEventListener('click', function() {
+                    // إزالة النشاط من جميع المبالغ
+                    donationAmounts.forEach(a => a.classList.remove('active'));
+                    // إضافة النشاط للمبلغ المختار
+                    this.classList.add('active');
+                    // تعيين القيمة في حقل الإدخال
+                    document.getElementById('donation-amount').value = this.getAttribute('data-amount');
+                });
+            });
+            
+            // تفعيل طرق الدفع
+            const paymentMethods = document.querySelectorAll('.payment-method');
+            paymentMethods.forEach(method => {
+                method.addEventListener('click', function() {
+                    // إزالة النشاط من جميع الطرق
+                    paymentMethods.forEach(m => m.classList.remove('active'));
+                    // إضافة النشاط للطريقة المختارة
+                    this.classList.add('active');
+                    
+                    // إظهار أو إخفاء تفاصيل بطاقة الائتمان
+                    const methodType = this.getAttribute('data-method');
+                    const creditCardDetails = document.getElementById('credit-card-details');
+                    
+                    if (methodType === 'credit') {
+                        creditCardDetails.style.display = 'block';
+                    } else {
+                        creditCardDetails.style.display = 'none';
+                    }
+                });
+            });
+            
+            // تفعيل زر التبرع النهائي
+            const submitDonationBtn = document.getElementById('submit-donation');
+            submitDonationBtn.addEventListener('click', function() {
+                const amount = document.getElementById('donation-amount').value;
+                const purpose = document.getElementById('donation-purpose').value;
+                const name = document.getElementById('donor-name').value;
+                const email = document.getElementById('donor-email').value;
+                
+                if (!amount || !purpose || !name || !email) {
+                    alert('يرجى ملء جميع الحقول المطلوبة');
+                    return;
+                }
+                
+                // محاكاة عملية التبرع الناجحة
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري المعالجة...';
+                this.disabled = true;
+                
+                setTimeout(() => {
+                    alert(`شكراً لك ${name} على تبرعك البالغ $${amount} لدعم ${getPurposeText(purpose)}. تم إرسال إيصال التبرع إلى ${email}`);
+                    
+                    // إعادة تعيين النموذج
+                    document.getElementById('donation-amount').value = '';
+                    document.getElementById('donation-purpose').value = '';
+                    document.getElementById('donor-name').value = '';
+                    document.getElementById('donor-email').value = '';
+                    document.getElementById('donor-message').value = '';
+                    document.getElementById('donation-receipt').checked = false;
+                    
+                    donationAmounts.forEach(a => a.classList.remove('active'));
+                    paymentMethods.forEach(m => m.classList.remove('active'));
+                    document.getElementById('credit-card-details').style.display = 'none';
+                    
+                    this.innerHTML = 'التبرع الآن';
+                    this.disabled = false;
+                    
+                    // إغلاق النافذة
+                    donationModal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }, 2000);
+            });
+            
+            // وظيفة مساعدة للحصول على نص جهة التبرع
+            function getPurposeText(value) {
+                const purposes = {
+                    'yemen': 'مشاريع اليمن الإنسانية',
+                    'education': 'برامج التعليم حول العالم',
+                    'health': 'برامج الصحة والرعاية الطبية',
+                    'peace': 'عمليات حفظ السلام',
+                    'refugees': 'دعم اللاجئين والنازحين',
+                    'general': 'أعمال الأمم المتحدة'
+                };
+                return purposes[value] || 'أعمال الأمم المتحدة';
+            }
+            
+            // محاكاة تسجيل الدخول
+            const loginSubmitBtn = document.querySelector('#login-modal .btn-primary');
+            loginSubmitBtn.addEventListener('click', function() {
+                const email = document.getElementById('login-email').value;
+                const password = document.getElementById('login-password').value;
+                
+                if (!email || !password) {
+                    alert('يرجى إدخال البريد الإلكتروني وكلمة المرور');
+                    return;
+                }
+                
+                // محاكاة عملية تسجيل الدخول
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري تسجيل الدخول...';
+                this.disabled = true;
+                
+                setTimeout(() => {
+                    alert(`تم تسجيل الدخول بنجاح! مرحباً بك ${email}`);
+                    
+                    // إعادة تعيين النموذج
+                    document.getElementById('login-email').value = '';
+                    document.getElementById('login-password').value = '';
+                    document.getElementById('remember-me').checked = false;
+                    
+                    this.innerHTML = 'تسجيل الدخول';
+                    this.disabled = false;
+                    
+                    // إغلاق النافذة
+                    loginModal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                    
+                    // تغيير نص زر تسجيل الدخول في الشريط العلوي
+                    loginBtn.innerHTML = '<i class="fas fa-user"></i> حسابي';
+                }, 1500);
             });
         });
     </script>
